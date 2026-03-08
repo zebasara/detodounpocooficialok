@@ -98,7 +98,7 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .card-slider{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer;user-select:none;touch-action:pan-y}
 .card-slides{display:flex;height:100%;transition:transform .3s ease;will-change:transform}
 .card-slide{min-width:100%;height:100%;flex-shrink:0}
-.card-slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.card-slide img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;background:var(--off-white)}
 .card-prev,.card-next{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;background:rgba(28,28,30,.55);backdrop-filter:blur(4px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:2;padding:0}
 .card-slider:hover .card-prev,.card-slider:hover .card-next{opacity:1}
 .card-prev{left:8px}
@@ -135,14 +135,14 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 /* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:white;border-radius:20px;width:min(900px,100%);max-height:96vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative;transform:scale(.96);transition:transform .25s}
+.modal{background:white;border-radius:20px;width:min(720px,92vw);max-height:88vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative;transform:scale(.96);transition:transform .25s}
 .modal-overlay.open .modal{transform:scale(1)}
 
 /* FIX MODAL MÓVIL: imagen más chica, scroll en info */
 @media(max-width:620px){
   .modal{grid-template-columns:1fr;max-height:95vh;border-radius:16px;overflow-y:auto}
-  .modal-gallery{height:auto;aspect-ratio:3/4;min-height:unset;max-height:50vh}
-  .mg-slide img{object-fit:cover}
+  .modal-gallery{height:auto;aspect-ratio:4/5;min-height:unset;max-height:55vh}
+  .mg-slide img{object-fit:contain}
   .mg-thumbs{display:none}
   .modal-info{padding:1rem;overflow-y:visible}
 }
@@ -151,10 +151,10 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .modal-close:hover{background:var(--charcoal)}
 
 /* Modal gallery */
-.modal-gallery{position:relative;background:var(--off-white);overflow:hidden}
-.modal-gallery{height:100%;min-height:300px}.modal-gallery .mg-slides{height:100%;display:flex}
+.modal-gallery{position:relative;background:var(--off-white);overflow:hidden;height:100%;min-height:0}
+.modal-gallery .mg-slides{height:100%;display:flex}
 .mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
-.mg-slide{min-width:100%;height:100%;flex-shrink:0}
+.mg-slide{min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .mg-slide img{width:100%;height:100%;object-fit:contain;display:block;background:var(--off-white)}
 .mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(28,28,30,.6);backdrop-filter:blur(6px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;padding:0}
 .mg-prev:hover,.mg-next:hover{background:var(--charcoal)}
@@ -213,13 +213,26 @@ footer a{color:var(--peach);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
 /* ── INSTALL BUTTON ── */
-.install-bar{position:fixed;bottom:92px;right:16px;z-index:399;display:none;animation:fadeInUp .4s ease both}
-.install-bar.visible{display:flex}
-.btn-install{display:flex;align-items:center;gap:9px;background:var(--charcoal);color:white;border:none;border-radius:30px;padding:11px 20px;font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;box-shadow:var(--shadow-lg);transition:transform .2s,box-shadow .2s;white-space:nowrap}
-.btn-install:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
-.btn-install svg{width:16px;height:16px;flex-shrink:0}
-.btn-install-close{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:white;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:2px;flex-shrink:0;transition:background .2s}
-.btn-install-close:hover{background:rgba(255,255,255,.3)}
+.install-banner{position:fixed;bottom:0;left:0;right:0;z-index:450;background:white;border-top:1px solid var(--light-gray);box-shadow:0 -4px 24px rgba(0,0,0,.12);padding:14px 16px;display:none;align-items:center;gap:12px}
+.install-banner.visible{display:flex;animation:slideUp .35s ease both}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.install-banner-icon{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--off-white)}
+.install-banner-icon img{width:100%;height:100%;object-fit:cover}
+.install-banner-text{flex:1;min-width:0}
+.install-banner-text strong{display:block;font-size:.85rem;font-weight:700;color:var(--charcoal)}
+.install-banner-text span{font-size:.74rem;color:var(--gray)}
+.install-banner-btn{background:var(--ocean);color:white;border:none;border-radius:20px;padding:9px 18px;font-family:var(--font-body);font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .2s}
+.install-banner-btn:hover{background:#2a4a6b}
+.install-banner-close{width:28px;height:28px;border:none;background:var(--light-gray);border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gray)}
+.ios-modal-overlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.ios-modal-overlay.open{opacity:1;pointer-events:all}
+.ios-modal{background:white;border-radius:20px 20px 16px 16px;width:min(420px,100%);padding:1.5rem;text-align:center}
+.ios-modal h3{font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.ios-modal p{font-size:.85rem;color:var(--gray);margin-bottom:1.2rem;line-height:1.6}
+.ios-steps{display:flex;flex-direction:column;gap:.7rem;text-align:left;margin-bottom:1.2rem}
+.ios-step{display:flex;align-items:center;gap:.8rem;font-size:.84rem;color:var(--charcoal)}
+.ios-step-num{width:26px;height:26px;border-radius:50%;background:var(--ocean);color:white;font-weight:700;font-size:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ios-modal-close{width:100%;padding:11px;border:none;background:var(--charcoal);color:white;border-radius:12px;font-family:var(--font-body);font-size:.88rem;font-weight:600;cursor:pointer}
 
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -296,48 +309,90 @@ footer a:hover{text-decoration:underline}
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
-<!-- INSTALL BAR -->
-<div class="install-bar" id="installBar">
-  <button class="btn-install" id="installBtn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v13m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
-    Instalar app
-  </button>
-  <button class="btn-install-close" id="installClose" title="Cerrar">×</button>
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+  <div class="install-banner-icon"><img src="logo.png" alt=""></div>
+  <div class="install-banner-text">
+    <strong>De Todo Un Poco</strong>
+    <span>Instalá la app en tu celular</span>
+  </div>
+  <button class="install-banner-btn" id="installBtn">Instalar</button>
+  <button class="install-banner-close" id="installClose">×</button>
+</div>
+
+<!-- IOS INSTALL MODAL -->
+<div class="ios-modal-overlay" id="iosModalOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="ios-modal">
+    <h3>Instalá la app 📲</h3>
+    <p>Seguí estos pasos desde Safari para agregar la app a tu pantalla de inicio:</p>
+    <div class="ios-steps">
+      <div class="ios-step"><span class="ios-step-num">1</span><span>Tocá el botón <strong>Compartir</strong> (el cuadrado con flecha ↑) en la barra de Safari</span></div>
+      <div class="ios-step"><span class="ios-step-num">2</span><span>Desplazate y tocá <strong>"Agregar a pantalla de inicio"</strong></span></div>
+      <div class="ios-step"><span class="ios-step-num">3</span><span>Tocá <strong>Agregar</strong> en la esquina superior derecha</span></div>
+    </div>
+    <button class="ios-modal-close" onclick="document.getElementById('iosModalOverlay').classList.remove('open')">Entendido</button>
+  </div>
 </div>
 
 <script>
-// ── PWA: Service Worker + Install prompt ──────────────────────────
+// ── PWA: Service Worker ───────────────────────────────────────────
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
 
-let deferredPrompt = null;
-const installBar   = document.getElementById('installBar');
-const installBtn   = document.getElementById('installBtn');
-const installClose = document.getElementById('installClose');
+// ── Install banner logic ──────────────────────────────────────────
+const installBanner = document.getElementById('installBanner');
+const installBtn    = document.getElementById('installBtn');
+const installClose  = document.getElementById('installClose');
+let deferredPrompt  = null;
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBar.classList.add('visible');
-});
+const isIOS        = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+const dismissed    = sessionStorage.getItem('install_dismissed');
+
+// Show banner: if not already installed and not dismissed this session
+if (!isStandalone && !dismissed) {
+  if (isIOS) {
+    // iOS: show banner immediately (no beforeinstallprompt on Safari)
+    setTimeout(() => installBanner.classList.add('visible'), 2000);
+  } else {
+    // Android/Chrome: wait for browser prompt
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.classList.add('visible');
+    });
+    // Fallback: show after 3s even if prompt doesn't fire
+    setTimeout(() => {
+      if (!isStandalone && !dismissed) installBanner.classList.add('visible');
+    }, 3000);
+  }
+}
 
 installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  installBar.classList.remove('visible');
+  if (isIOS) {
+    // Show iOS instructions modal
+    document.getElementById('iosModalOverlay').classList.add('open');
+    installBanner.classList.remove('visible');
+    return;
+  }
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+  installBanner.classList.remove('visible');
 });
 
 installClose.addEventListener('click', () => {
-  installBar.classList.remove('visible');
+  installBanner.classList.remove('visible');
+  sessionStorage.setItem('install_dismissed', '1');
 });
 
 window.addEventListener('appinstalled', () => {
-  installBar.classList.remove('visible');
+  installBanner.classList.remove('visible');
   deferredPrompt = null;
 });
 </script>
