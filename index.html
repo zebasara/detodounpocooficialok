@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Todo Un Poco | Moda para todos</title>
+<meta name="description" content="Tienda de ropa para hombres y mujeres. Estilo, calidad y precios accesibles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --peach:#F8B185; --coral:#F67280; --mauve:#C06C84; --slate:#6C5B7B; --ocean:#355C7D;
+  --warm-white:#FAF8F5; --off-white:#F2EEE8; --charcoal:#1C1C1E; --gray:#6B6B6B;
+  --light-gray:#E8E4DF; --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Outfit',sans-serif; --radius:12px; --radius-sm:8px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08); --shadow-md:0 4px 20px rgba(0,0,0,.12);
+  --shadow-lg:0 8px 40px rgba(0,0,0,.16);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--warm-white);color:var(--charcoal);min-height:100vh;overflow-x:hidden}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--light-gray);padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:var(--shadow-sm)}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{height:48px;width:auto;object-fit:contain}
+.nav-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--charcoal);line-height:1.1}
+.nav-title span{display:block;font-size:.58rem;font-family:var(--font-body);font-weight:400;color:var(--gray);letter-spacing:.18em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:.82rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--coral)}
+.nav-ig{display:flex!important;align-items:center;gap:6px;background:linear-gradient(135deg,var(--peach),var(--coral),var(--mauve));color:white!important;padding:7px 14px;border-radius:20px;font-size:.76rem!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important;transition:opacity .2s,transform .2s!important}
+.nav-ig:hover{opacity:.9;transform:translateY(-1px);color:white!important}
+.nav-ig svg{width:14px;height:14px;flex-shrink:0}
+
+/* HERO */
+.hero{position:relative;background:linear-gradient(135deg,#FAF8F5 0%,#F2EEE8 50%,#EDE4DA 100%);padding:5.5rem 2rem 4.5rem;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(246,114,128,.13) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(53,92,125,.09) 0%,transparent 70%);border-radius:50%}
+.hero-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--coral);margin-bottom:1.1rem}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;color:var(--charcoal);line-height:1.12;margin-bottom:1rem}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--coral),var(--mauve));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--gray);max-width:420px;margin:0 auto 2.5rem;line-height:1.65;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:white;padding:14px 30px;border-radius:40px;font-weight:600;font-size:.9rem;text-decoration:none;letter-spacing:.03em;transition:transform .2s,box-shadow .2s;box-shadow:var(--shadow-md)}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+
+/* SHOP */
+.shop-section{padding:3rem 2rem 6rem;max-width:1300px;margin:0 auto}
+.section-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+.section-title{font-family:var(--font-display);font-size:1.85rem;font-weight:700;color:var(--charcoal)}
+.section-title span{font-style:italic;color:var(--coral)}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{padding:7px 20px;border-radius:20px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.82rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.filter-tab:hover{border-color:var(--coral);color:var(--coral)}
+.filter-tab.active{background:var(--charcoal);border-color:var(--charcoal);color:white}
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:2rem}
+.sort-label{font-size:.82rem;color:var(--gray);font-weight:400}
+.sort-btn{padding:5px 16px;border-radius:14px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s}
+.sort-btn:hover{border-color:var(--ocean);color:var(--ocean)}
+.sort-btn.active{background:var(--ocean);border-color:var(--ocean);color:white}
+
+/* GRID */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.5rem}
+
+/* CARD */
+.product-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;animation:fadeInUp .4s ease both}
+.product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block}
+.product-card:hover .card-img-wrap img{transform:scale(1.04)}
+.badge-hot{position:absolute;top:11px;left:11px;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:10px;box-shadow:0 2px 10px rgba(246,114,128,.45)}
+.card-cat{position:absolute;top:11px;right:11px;background:rgba(28,28,30,.72);backdrop-filter:blur(4px);color:white;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:8px}
+.card-body{padding:1rem 1rem .8rem;flex:1;display:flex;flex-direction:column}
+.card-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--charcoal);margin-bottom:.35rem;line-height:1.3;cursor:pointer}
+.card-title:hover{color:var(--coral)}
+.card-desc{font-size:.8rem;color:var(--gray);line-height:1.55;flex:1;margin-bottom:.8rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-price{font-size:1.2rem;font-weight:700;color:var(--ocean);margin-bottom:.9rem}
+.card-price span{font-size:.72rem;font-weight:400;color:var(--gray)}
+.card-actions{display:flex;gap:8px;padding:0 1rem 1rem}
+.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:10px 14px;font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;letter-spacing:.02em}
+.btn-wa:hover{background:#1da851;transform:translateY(-1px)}
+.btn-wa svg{width:16px;height:16px;flex-shrink:0}
+.btn-like{display:flex;align-items:center;justify-content:center;gap:5px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:10px 13px;font-family:var(--font-body);font-size:.82rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;min-width:62px}
+.btn-like:hover{border-color:var(--coral);color:var(--coral)}
+.btn-like.liked{background:#FFF0F2;border-color:var(--coral);color:var(--coral)}
+.btn-like svg{width:16px;height:16px;flex-shrink:0;transition:transform .2s}
+.btn-like.liked svg{transform:scale(1.18)}
+.btn-like.liked svg path{fill:var(--coral)}
+
+/* STATES */
+.empty-state{grid-column:1/-1;text-align:center;padding:5rem 2rem;color:var(--gray)}
+.empty-state svg{width:60px;height:60px;opacity:.25;margin-bottom:1rem}
+.empty-state p{font-size:.95rem}
+.loading-state{grid-column:1/-1;display:flex;justify-content:center;padding:5rem}
+.spinner{width:38px;height:38px;border:3px solid var(--light-gray);border-top-color:var(--coral);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);text-decoration:none;transition:transform .25s,box-shadow .25s;animation:waPulse 3s ease-in-out infinite}
+.float-wa:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
+.float-wa svg{width:30px;height:30px}
+.float-wa .wa-tip{position:absolute;right:70px;background:var(--charcoal);color:white;font-size:.78rem;font-weight:500;white-space:nowrap;padding:7px 14px;border-radius:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+.float-wa:hover .wa-tip{opacity:1}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 32px rgba(37,211,102,.72)}}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:rgba(255,255,255,.55);text-align:center;padding:2.2rem;font-size:.82rem;line-height:1.9}
+footer strong{color:white;font-family:var(--font-display);font-style:italic;font-size:1rem}
+footer a{color:var(--peach);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .navbar{padding:0 1rem}
+  .nav-links{display:none}
+  .shop-section{padding:2rem 1rem 5rem}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}
+  .card-desc{display:none}
+  .hero{padding:3.5rem 1.5rem 3rem}
+  .float-wa{bottom:20px;right:20px;width:52px;height:52px}
+}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-brand">
+    <img src="logo.png" alt="De Todo Un Poco" class="nav-logo">
+    <div class="nav-title">
+      De Todo Un Poco
+      <span>Moda para todos</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#tienda">Tienda</a>
+    <a href="https://wa.me/5493734485570" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank" class="nav-ig">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @detodounpoco_oficialok
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">✦ Nueva colección disponible</p>
+  <h1>Moda para <em>ella</em><br>y para <em>él</em></h1>
+  <p class="hero-sub">Encontrá las prendas que buscás. Estilo, calidad y precios accesibles — todo en un solo lugar.</p>
+  <a href="#tienda" class="hero-cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    Ver la tienda
+  </a>
+</section>
+
+<section class="shop-section" id="tienda">
+  <div class="section-header">
+    <h2 class="section-title">Nuestra <span>Tienda</span></h2>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todo</button>
+      <button class="filter-tab" data-filter="mujer">👗 Mujer</button>
+      <button class="filter-tab" data-filter="hombre">👔 Hombre</button>
+      <button class="filter-tab" data-filter="unisex">✨ Unisex</button>
+    </div>
+  </div>
+  <div class="sort-bar">
+    <span class="sort-label">Ordenar:</span>
+    <button class="sort-btn active" data-sort="hot">🔥 Hot</button>
+    <button class="sort-btn" data-sort="new">✨ Nuevo</button>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <div class="loading-state"><div class="spinner"></div></div>
+  </div>
+</section>
+
+<footer>
+  <strong>De Todo Un Poco</strong><br>
+  <a href="https://wa.me/5493734485570" target="_blank">📱 +54 9 3734 48-5570</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank">📸 @detodounpoco_oficialok</a>
+  &nbsp;·&nbsp; Argentina<br>
+  <small style="opacity:.35;font-size:.68rem;margin-top:.5rem;display:block">© 2025 De Todo Un Poco</small>
+</footer>
+
+<a href="https://wa.me/5493734485570" target="_blank" class="float-wa" title="Contactar por WhatsApp">
+  <span class="wa-tip">💬 Consultanos</span>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script type="module">
+import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getFirestore, collection, getDocs, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+// ── Config (ya completada) ──────────────────────────────────────
+const firebaseConfig = {
+  apiKey:            "AIzaSyClX9La52fBjrENUtumJh6gF40bldAmxaU",
+  authDomain:        "detodounpocooficialok-6b190.firebaseapp.com",
+  projectId:         "detodounpocooficialok-6b190",
+  storageBucket:     "detodounpocooficialok-6b190.firebasestorage.app",
+  messagingSenderId: "236091151621",
+  appId:             "1:236091151621:web:bf63710dbfcc5d40a2d36c"
+};
+const WA_NUMBER  = '5493734485570';
+const SITE_URL   = window.location.origin; // se detecta automáticamente
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+// ── State ───────────────────────────────────────────────────────
+let allProducts    = [];
+let currentFilter  = 'all';
+let currentSort    = 'hot';
+const liked        = JSON.parse(localStorage.getItem('dtup_liked') || '[]');
+
+// ── Load ────────────────────────────────────────────────────────
+async function loadProducts() {
+  try {
+    const snap = await getDocs(collection(db, 'products'));
+    allProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    render();
+  } catch (e) {
+    console.error(e);
+    document.getElementById('productsGrid').innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p>Error al cargar. Revisá la consola.</p>
+      </div>`;
+  }
+}
+
+function render() {
+  let list = [...allProducts];
+  if (currentFilter !== 'all') list = list.filter(p => p.category === currentFilter);
+  if (currentSort === 'hot')   list.sort((a,b) => (b.likes||0) - (a.likes||0));
+  else                         list.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+
+  const grid = document.getElementById('productsGrid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p>No hay productos en esta categoría aún.</p>
+    </div>`;
+    return;
+  }
+
+  const maxLikes    = Math.max(...list.map(p => p.likes||0), 0);
+  const hotThreshold = Math.max(5, maxLikes * 0.6);
+
+  grid.innerHTML = list.map((p, i) => {
+    const isHot   = (p.likes||0) >= hotThreshold && p.likes > 0;
+    const isLiked = liked.includes(p.id);
+    const price   = Number(p.price).toLocaleString('es-AR');
+    const catLabel = p.category === 'mujer' ? '👗 Mujer' : p.category === 'hombre' ? '👔 Hombre' : '✨ Unisex';
+
+    // ✅ El link incluye la URL del producto → WhatsApp muestra la imagen
+    const productUrl = `${SITE_URL}/producto?id=${p.id}`;
+    const waText     = encodeURIComponent(`Hola! Me interesa *${p.title}* por $${price}. ¿Está disponible? ${productUrl}`);
+    const waLink     = `https://wa.me/${WA_NUMBER}?text=${waText}`;
+
+    return `
+    <div class="product-card" style="animation-delay:${i*.05}s">
+      <div class="card-img-wrap" onclick="window.open('/producto?id=${p.id}','_blank')">
+        <img src="${p.imageUrl}" alt="${p.title}" loading="lazy">
+        ${isHot ? '<div class="badge-hot">🔥 Hot</div>' : ''}
+        <div class="card-cat">${catLabel}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title" onclick="window.open('/producto?id=${p.id}','_blank')">${p.title}</div>
+        <div class="card-desc">${p.description}</div>
+        <div class="card-price">$${price} <span>ARS</span></div>
+      </div>
+      <div class="card-actions">
+        <a href="${waLink}" target="_blank" class="btn-wa">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Consultar
+        </a>
+        <button class="btn-like ${isLiked?'liked':''}" onclick="toggleLike('${p.id}',this)">
+          <svg viewBox="0 0 24 24" fill="${isLiked?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span>${p.likes||0}</span>
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Like ────────────────────────────────────────────────────────
+window.toggleLike = async (id, btn) => {
+  const idx     = liked.indexOf(id);
+  const wasLiked = idx !== -1;
+  wasLiked ? liked.splice(idx,1) : liked.push(id);
+  localStorage.setItem('dtup_liked', JSON.stringify(liked));
+
+  const delta   = wasLiked ? -1 : 1;
+  const isNowLiked = !wasLiked;
+  btn.classList.toggle('liked', isNowLiked);
+  const svg = btn.querySelector('svg');
+  svg.setAttribute('fill', isNowLiked ? 'currentColor' : 'none');
+  const span = btn.querySelector('span');
+  span.textContent = parseInt(span.textContent) + delta;
+
+  const p = allProducts.find(p => p.id === id);
+  if (p) p.likes = (p.likes||0) + delta;
+
+  try { await updateDoc(doc(db,'products',id), { likes: increment(delta) }); }
+  catch(e) { console.error(e); }
+};
+
+// ── Filters / Sort ───────────────────────────────────────────────
+document.querySelectorAll('.filter-tab').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  render();
+}));
+document.querySelectorAll('.sort-btn').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentSort = btn.dataset.sort;
+  render();
+}));
+
+// ── Navbar scroll ────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+loadProducts();
+</script>
+</body>
+</html>
