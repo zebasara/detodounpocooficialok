@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Tienda online De Todo Un Poco",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   }
 }
