@@ -3,8 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>De Todo Un Poco | Moda para todos</title>
-<meta name="description" content="Tienda de ropa para hombres y mujeres. Estilo, calidad y precios accesibles.">
+<title>De Todo Un Poco | Ropa para Hombre y Mujer — Chaco, Argentina</title>
+<meta name="description" content="Tienda de ropa online en Argentina. Vestidos, remeras, pantalones y más para hombres y mujeres. Consultá por WhatsApp, envíos disponibles.">
+<meta name="keywords" content="ropa mujer, ropa hombre, tienda online argentina, moda argentina, vestidos, remeras, pantalones, ropa chaco">
+<meta name="author" content="De Todo Un Poco">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://detodounpocooficialok.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="De Todo Un Poco">
+<meta property="og:title"       content="De Todo Un Poco | Ropa para Hombre y Mujer">
+<meta property="og:description" content="Tienda de ropa online en Argentina. Consultá por WhatsApp, envíos disponibles.">
+<meta property="og:image"       content="https://detodounpocooficialok.vercel.app/logo.png">
+<meta property="og:url"         content="https://detodounpocooficialok.vercel.app/">
+<meta property="og:locale"      content="es_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="De Todo Un Poco | Ropa para Hombre y Mujer">
+<meta name="twitter:description" content="Tienda de ropa online en Argentina. Consultá por WhatsApp.">
+<meta name="twitter:image"       content="https://detodounpocooficialok.vercel.app/logo.png">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "De Todo Un Poco",
+  "description": "Tienda de ropa para hombres y mujeres en Argentina",
+  "url": "https://detodounpocooficialok.vercel.app",
+  "telephone": "+54-9-3734-48-5570",
+  "address": { "@type": "PostalAddress", "addressCountry": "AR" },
+  "sameAs": ["https://www.instagram.com/detodounpoco_oficialok"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+54-9-3734-48-5570",
+    "availableLanguage": "Spanish"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -136,7 +175,7 @@ footer a:hover{text-decoration:underline}
     </div>
   </a>
   <div class="nav-links">
-    <a href="#tienda">Tienda</a>
+    <a href="#tienda" onclick="event.preventDefault();document.getElementById('tienda').scrollIntoView({behavior:'smooth',block:'start'})">Tienda</a>
     <a href="https://wa.me/5493734485570" target="_blank">WhatsApp</a>
     <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank" class="nav-ig">
       <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -149,7 +188,7 @@ footer a:hover{text-decoration:underline}
   <p class="hero-eyebrow">✦ Nueva colección disponible</p>
   <h1>Moda para <em>ella</em><br>y para <em>él</em></h1>
   <p class="hero-sub">Encontrá las prendas que buscás. Estilo, calidad y precios accesibles — todo en un solo lugar.</p>
-  <a href="#tienda" class="hero-cta">
+  <a href="#tienda" class="hero-cta" onclick="event.preventDefault();document.getElementById('tienda').scrollIntoView({behavior:'smooth',block:'start'})">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     Ver la tienda
   </a>
