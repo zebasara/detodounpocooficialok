@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin — De Todo Un Poco</title>
+<meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --coral:#F67280;--mauve:#C06C84;--ocean:#355C7D;--peach:#F8B185;
   --warm-white:#FAF8F5;--off-white:#F2EEE8;--charcoal:#1C1C1E;
-  --gray:#6B6B6B;--light-gray:#E8E4DF;--danger:#E53935;
+  --gray:#6B6B6B;--light-gray:#E8E4DF;--danger:#E53935;--success:#25D366;
   --font-display:'Playfair Display',serif;--font-body:'Outfit',sans-serif;
-  --radius:12px;--shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --radius:12px;--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 6px 24px rgba(0,0,0,.12);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-body);background:#EDEAE5;color:var(--charcoal);min-height:100vh}
 
-/* AUTH */
+/* ── AUTH ── */
 #authGate{position:fixed;inset:0;z-index:1000;background:var(--charcoal);display:flex;align-items:center;justify-content:center;padding:1rem}
 .auth-box{background:white;border-radius:20px;padding:2.5rem 2rem;text-align:center;width:min(380px,92vw);box-shadow:0 24px 64px rgba(0,0,0,.35)}
 .auth-logo{height:64px;object-fit:contain;margin-bottom:1rem}
@@ -28,119 +29,147 @@ body{font-family:var(--font-body);background:#EDEAE5;color:var(--charcoal);min-h
 .btn-primary:hover{opacity:.85}
 .auth-error{color:var(--danger);font-size:.8rem;margin-top:.4rem;display:none}
 
-/* LAYOUT */
+/* ── LAYOUT ── */
 .admin-wrap{display:none}
 .admin-wrap.on{display:block}
-header{background:var(--charcoal);color:white;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-header .brand{display:flex;align-items:center;gap:10px}
+header{background:var(--charcoal);color:white;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;position:sticky;top:0;z-index:50}
+.hbrand{display:flex;align-items:center;gap:10px}
 header img{height:38px}
 header h1{font-family:var(--font-display);font-size:1.1rem}
 header small{font-size:.6rem;opacity:.4;display:block;letter-spacing:.1em;text-transform:uppercase}
-header a{color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none}
+header a{color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;transition:color .2s}
 header a:hover{color:white}
-.body{max-width:1140px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:420px 1fr;gap:1.5rem;align-items:start}
-@media(max-width:820px){.body{grid-template-columns:1fr}}
+.body{max-width:1200px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:420px 1fr;gap:1.5rem;align-items:start}
+@media(max-width:860px){.body{grid-template-columns:1fr}}
 
-/* CARD */
+/* ── CARD ── */
 .card{background:white;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm)}
-.card h2{font-family:var(--font-display);font-size:1.1rem;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--light-gray)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--light-gray)}
+.card-header h2{font-family:var(--font-display);font-size:1.1rem}
+.edit-badge{font-size:.72rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:3px 11px;border-radius:10px;display:none}
+.edit-badge.show{display:inline-block}
 
-/* FORM */
+/* ── FORM ── */
 .fg{margin-bottom:1rem}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem}
-label{display:block;font-size:.74rem;font-weight:600;color:var(--gray);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
-.label-hint{font-size:.68rem;color:var(--coral);font-weight:400;letter-spacing:0;text-transform:none;margin-left:4px}
+label{display:block;font-size:.72rem;font-weight:600;color:var(--gray);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
+.label-hint{font-size:.66rem;color:var(--coral);font-weight:400;letter-spacing:0;text-transform:none;margin-left:3px}
 input[type=text],input[type=number],textarea,select{width:100%;padding:10px 13px;border:1.5px solid var(--light-gray);border-radius:8px;font-family:var(--font-body);font-size:.88rem;outline:none;transition:border-color .2s;background:white;color:var(--charcoal)}
 input:focus,textarea:focus,select:focus{border-color:var(--ocean)}
 textarea{resize:vertical;min-height:78px}
 
-/* MULTI-IMAGE UPLOAD */
-.upload-section{margin-bottom:1rem}
+/* ── IMAGE UPLOAD ── */
 .upload-drop{border:2px dashed var(--light-gray);border-radius:var(--radius);padding:1.4rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm-white);position:relative}
 .upload-drop:hover,.upload-drop.drag{border-color:var(--coral);background:#FFF5F6}
 .upload-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.upload-drop .ico{font-size:1.6rem;margin-bottom:.3rem}
-.upload-drop p{font-size:.82rem;color:var(--gray)}
+.upload-drop .ico{font-size:1.5rem;margin-bottom:.3rem}
+.upload-drop p{font-size:.8rem;color:var(--gray)}
 .upload-drop strong{color:var(--coral)}
-.img-previews{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.8rem}
+.img-previews{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.7rem}
 .img-thumb{position:relative;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--off-white)}
 .img-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.img-thumb .rm-btn{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(229,57,53,.85);color:white;border:none;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .2s}
+.img-thumb .rm-btn{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:rgba(229,57,53,.85);color:white;border:none;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
 .img-thumb .rm-btn:hover{background:var(--danger)}
-.img-thumb .main-badge{position:absolute;bottom:4px;left:4px;background:rgba(53,92,125,.85);color:white;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.05em;text-transform:uppercase}
-.upload-count{font-size:.75rem;color:var(--gray);margin-top:.4rem}
-
-/* PROGRESS */
+.img-thumb .main-badge{position:absolute;bottom:3px;left:3px;background:rgba(53,92,125,.85);color:white;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase}
+.img-thumb.existing::after{content:'✓';position:absolute;bottom:3px;right:3px;background:rgba(37,211,102,.85);color:white;font-size:.6rem;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.upload-count{font-size:.73rem;color:var(--gray);margin-top:.4rem}
 .prog-wrap{display:none;margin-top:.6rem}
 .prog-bar{height:4px;background:var(--light-gray);border-radius:2px;overflow:hidden}
 .prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--mauve));transition:width .3s}
 .prog-txt{font-size:.72rem;color:var(--gray);margin-top:4px}
 
-/* SUBMIT */
-.btn-submit{width:100%;padding:13px;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:.5rem}
+/* ── BUTTONS ── */
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.5rem}
+.btn-submit{padding:13px;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:.92rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:7px}
 .btn-submit:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
 .btn-submit:disabled{opacity:.6;cursor:not-allowed}
+.btn-submit.full{grid-column:1/-1}
+.btn-cancel{padding:13px;background:white;color:var(--gray);border:1.5px solid var(--light-gray);border-radius:var(--radius);font-family:var(--font-body);font-size:.92rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-cancel:hover{border-color:var(--charcoal);color:var(--charcoal)}
 
-/* TOAST */
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--charcoal);color:white;padding:11px 22px;border-radius:30px;font-size:.86rem;font-weight:500;z-index:9999;transition:transform .3s;white-space:nowrap}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--charcoal);color:white;padding:11px 22px;border-radius:30px;font-size:.86rem;font-weight:500;z-index:9999;transition:transform .3s;white-space:nowrap;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
-/* PRODUCTS LIST */
-.prod-list{display:flex;flex-direction:column;gap:.8rem}
-.prod-item{display:flex;gap:.9rem;align-items:center;padding:.9rem;background:var(--warm-white);border-radius:8px;border:1px solid var(--light-gray)}
-.prod-thumbs{display:flex;gap:4px;flex-shrink:0}
-.prod-thumbs img{width:48px;height:60px;object-fit:cover;border-radius:6px;background:var(--off-white)}
+/* ── PRODUCTS LIST ── */
+.list-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.list-header h2{font-family:var(--font-display);font-size:1.1rem}
+.prod-count{font-size:.78rem;color:var(--gray)}
+.prod-list{display:flex;flex-direction:column;gap:.75rem}
+.prod-item{display:flex;gap:.9rem;align-items:center;padding:.9rem;background:var(--warm-white);border-radius:8px;border:1px solid var(--light-gray);transition:box-shadow .2s,border-color .2s}
+.prod-item:hover{box-shadow:var(--shadow-sm)}
+.prod-item.editing{border-color:var(--coral);background:#FFF8F8}
+.prod-thumbs{display:flex;gap:3px;flex-shrink:0}
+.prod-thumbs img{width:46px;height:58px;object-fit:cover;border-radius:6px;background:var(--off-white)}
 .prod-info{flex:1;min-width:0}
-.prod-title{font-weight:600;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.prod-meta{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;align-items:center}
-.prod-price{font-size:.8rem;font-weight:700;color:var(--ocean)}
-.prod-orig{font-size:.74rem;color:var(--gray);text-decoration:line-through}
-.prod-badge{font-size:.68rem;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:2px 7px;border-radius:6px;font-weight:700}
-.prod-category{font-size:.7rem;background:var(--off-white);padding:2px 8px;border-radius:8px;color:var(--gray)}
-.prod-likes{font-size:.72rem;color:var(--coral)}
-.btn-del{padding:6px 12px;background:none;border:1.5px solid var(--danger);color:var(--danger);border-radius:8px;font-family:var(--font-body);font-size:.74rem;font-weight:600;cursor:pointer;transition:all .2s;flex-shrink:0}
+.prod-title{font-weight:600;font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod-meta{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;align-items:center}
+.prod-price{font-size:.78rem;font-weight:700;color:var(--ocean)}
+.prod-orig-price{font-size:.72rem;color:var(--gray);text-decoration:line-through}
+.prod-disc{font-size:.65rem;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:2px 7px;border-radius:6px;font-weight:700}
+.prod-cat{font-size:.68rem;background:var(--off-white);padding:2px 7px;border-radius:7px;color:var(--gray)}
+.prod-likes{font-size:.7rem;color:var(--coral)}
+.prod-imgs-count{font-size:.68rem;color:var(--gray)}
+.prod-actions{display:flex;gap:5px;flex-shrink:0}
+.btn-edit{padding:6px 12px;background:none;border:1.5px solid var(--ocean);color:var(--ocean);border-radius:7px;font-family:var(--font-body);font-size:.74rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px}
+.btn-edit:hover{background:var(--ocean);color:white}
+.btn-del{padding:6px 12px;background:none;border:1.5px solid var(--danger);color:var(--danger);border-radius:7px;font-family:var(--font-body);font-size:.74rem;font-weight:600;cursor:pointer;transition:all .2s}
 .btn-del:hover{background:var(--danger);color:white}
 .empty-adm{text-align:center;padding:3rem;color:var(--gray);font-size:.88rem}
 .spin-wrap{display:flex;justify-content:center;padding:2rem}
 .spinner{width:30px;height:30px;border:3px solid var(--light-gray);border-top-color:var(--coral);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Responsive */
+@media(max-width:480px){
+  .fg-row{grid-template-columns:1fr}
+  .prod-actions{flex-direction:column}
+  .btn-edit,.btn-del{font-size:.7rem;padding:5px 9px}
+}
 </style>
 </head>
 <body>
 
+<!-- AUTH -->
 <div id="authGate">
   <div class="auth-box">
     <img src="logo.png" alt="Logo" class="auth-logo">
     <h2>Panel de Administración</h2>
     <p>Ingresá tu contraseña para acceder</p>
-    <input type="password" class="auth-input" id="pwInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')login()">
+    <input type="password" class="auth-input" id="pwInput" placeholder="Contraseña"
+           onkeydown="if(event.key==='Enter')login()">
     <button class="btn-primary" onclick="login()">Ingresar</button>
     <p class="auth-error" id="authErr">Contraseña incorrecta</p>
   </div>
 </div>
 
+<!-- PANEL -->
 <div class="admin-wrap" id="adminPanel">
   <header>
-    <div class="brand">
+    <div class="hbrand">
       <img src="logo.png" alt="Logo">
       <div><h1>De Todo Un Poco</h1><small>Panel Admin</small></div>
     </div>
-    <a href="index.html">← Ver tienda</a>
+    <a href="/">← Ver tienda</a>
   </header>
 
   <div class="body">
-    <!-- FORM -->
-    <div class="card">
-      <h2>Agregar Producto</h2>
 
-      <!-- MULTI IMAGE -->
-      <div class="upload-section">
+    <!-- FORM -->
+    <div class="card" id="formCard">
+      <div class="card-header">
+        <h2 id="formTitle">Agregar Producto</h2>
+        <span class="edit-badge" id="editBadge">✏️ Editando</span>
+      </div>
+
+      <!-- Images -->
+      <div class="fg">
         <label>Imágenes <span class="label-hint">(hasta 8 — la primera es la principal)</span></label>
         <div class="upload-drop" id="uploadDrop">
           <input type="file" id="imgFiles" accept="image/*" multiple onchange="addImages(this.files)">
           <div class="ico">📸</div>
           <p><strong>Hacé clic</strong> o arrastrá las imágenes</p>
-          <p style="font-size:.7rem;margin-top:3px;opacity:.6">JPG · PNG · WEBP — hasta 8 fotos</p>
+          <p style="font-size:.68rem;margin-top:3px;opacity:.6">JPG · PNG · WEBP — hasta 8 fotos</p>
         </div>
         <div class="img-previews" id="imgPreviews"></div>
         <p class="upload-count" id="imgCount"></p>
@@ -158,19 +187,16 @@ textarea{resize:vertical;min-height:78px}
         <label>Descripción</label>
         <textarea id="descIn" placeholder="Materiales, tallas disponibles, colores..."></textarea>
       </div>
-
-      <!-- PRICES -->
       <div class="fg-row">
         <div>
           <label>Precio de venta (ARS) <span class="label-hint">*</span></label>
           <input type="number" id="priceIn" placeholder="12000" min="0">
         </div>
         <div>
-          <label>Precio original <span class="label-hint">opcional — queda tachado</span></label>
+          <label>Precio original <span class="label-hint">opcional — tachado</span></label>
           <input type="number" id="origPriceIn" placeholder="15000" min="0">
         </div>
       </div>
-
       <div class="fg">
         <label>Categoría</label>
         <select id="catIn">
@@ -180,31 +206,40 @@ textarea{resize:vertical;min-height:78px}
         </select>
       </div>
 
-      <button class="btn-submit" id="submitBtn" onclick="addProduct()">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Publicar Producto
-      </button>
+      <div class="btn-row" id="btnRow">
+        <button class="btn-submit full" id="submitBtn" onclick="saveProduct()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Publicar Producto
+        </button>
+      </div>
     </div>
 
     <!-- LIST -->
     <div class="card">
-      <h2>Productos Publicados</h2>
-      <div id="prodList"><div class="spin-wrap"><div class="spinner"></div></div></div>
+      <div class="list-header">
+        <h2>Productos Publicados</h2>
+        <span class="prod-count" id="prodCount"></span>
+      </div>
+      <div id="prodList">
+        <div class="spin-wrap"><div class="spinner"></div></div>
+      </div>
     </div>
+
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script type="module">
-import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp }
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc, serverTimestamp }
   from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
+// ── Config ────────────────────────────────────────────────────────
 const ADMIN_PASS    = '123456Aabc';
 const CLOUD_NAME    = 'dywosceas';
 const UPLOAD_PRESET = 'detodounpoco';
-const FB_CONF = {
+const FB = {
   apiKey:"AIzaSyClX9La52fBjrENUtumJh6gF40bldAmxaU",
   authDomain:"detodounpocooficialok-6b190.firebaseapp.com",
   projectId:"detodounpocooficialok-6b190",
@@ -213,11 +248,13 @@ const FB_CONF = {
   appId:"1:236091151621:web:bf63710dbfcc5d40a2d36c"
 };
 
-const app = initializeApp(FB_CONF);
+const app = initializeApp(FB);
 const db  = getFirestore(app);
 
-// ── State: pending image Files ────────────────────────────────────
-let pendingFiles = [];  // Array of File objects
+// ── State ─────────────────────────────────────────────────────────
+// Each item: { type: 'existing'|'new', url?: string, file?: File }
+let pendingImgs = [];
+let editingId   = null;  // null = create mode, string = edit mode
 
 // ── Auth ──────────────────────────────────────────────────────────
 window.login = () => {
@@ -230,60 +267,60 @@ window.login = () => {
   }
 };
 
-// ── Multi-image handling ──────────────────────────────────────────
+// ── Image handling ─────────────────────────────────────────────────
 window.addImages = (files) => {
-  const remaining = 8 - pendingFiles.length;
-  const toAdd = Array.from(files).slice(0, remaining);
-  toAdd.forEach(f => pendingFiles.push(f));
-  renderPreviews();
-  // reset input so same files can be re-added if needed
+  const space = 8 - pendingImgs.length;
+  Array.from(files).slice(0, space).forEach(f => {
+    pendingImgs.push({ type: 'new', file: f, previewUrl: URL.createObjectURL(f) });
+  });
   document.getElementById('imgFiles').value = '';
+  renderPreviews();
 };
 
 function renderPreviews() {
   const container = document.getElementById('imgPreviews');
-  const count     = document.getElementById('imgCount');
   container.innerHTML = '';
-  pendingFiles.forEach((file, i) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'img-thumb';
+  pendingImgs.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'img-thumb' + (item.type === 'existing' ? ' existing' : '');
     const img = document.createElement('img');
-    img.src = URL.createObjectURL(file);
+    img.src = item.type === 'existing' ? item.url : item.previewUrl;
     const rm = document.createElement('button');
     rm.className = 'rm-btn';
     rm.innerHTML = '×';
-    rm.onclick = () => { pendingFiles.splice(i,1); renderPreviews(); };
-    thumb.appendChild(img);
-    thumb.appendChild(rm);
+    rm.onclick = () => { pendingImgs.splice(i,1); renderPreviews(); };
+    div.appendChild(img);
+    div.appendChild(rm);
     if (i === 0) {
       const badge = document.createElement('div');
       badge.className = 'main-badge';
       badge.textContent = 'Principal';
-      thumb.appendChild(badge);
+      div.appendChild(badge);
     }
-    container.appendChild(thumb);
+    container.appendChild(div);
   });
-  count.textContent = pendingFiles.length > 0
-    ? `${pendingFiles.length} imagen${pendingFiles.length > 1 ? 'es' : ''} seleccionada${pendingFiles.length > 1 ? 's' : ''}`
+  const cnt = pendingImgs.length;
+  document.getElementById('imgCount').textContent = cnt > 0
+    ? `${cnt} imagen${cnt>1?'es':''} — ${pendingImgs.filter(x=>x.type==='new').length} nueva${pendingImgs.filter(x=>x.type==='new').length!==1?'s':''}`
     : '';
 }
 
-// ── Upload one file to Cloudinary ─────────────────────────────────
+// ── Upload new files to Cloudinary ────────────────────────────────
 function uploadOne(file, index, total) {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', UPLOAD_PRESET);
   return new Promise((res, rej) => {
-    const fd = new FormData();
-    fd.append('file', file);
-    fd.append('upload_preset', UPLOAD_PRESET);
     const xhr = new XMLHttpRequest();
     xhr.upload.onprogress = e => {
       if (e.lengthComputable) {
-        const pct = Math.round((index / total + e.loaded / e.total / total) * 100);
+        const pct = Math.round((index/total + e.loaded/e.total/total)*100);
         document.getElementById('progFill').style.width = pct + '%';
         document.getElementById('progTxt').textContent =
-          `Subiendo imagen ${index + 1} de ${total}... ${Math.round(e.loaded/e.total*100)}%`;
+          `Subiendo foto ${index+1} de ${total}... ${Math.round(e.loaded/e.total*100)}%`;
       }
     };
-    xhr.onload = () => xhr.status === 200
+    xhr.onload = () => xhr.status===200
       ? res(JSON.parse(xhr.responseText).secure_url)
       : rej(new Error('Error Cloudinary'));
     xhr.onerror = () => rej(new Error('Error de red'));
@@ -292,107 +329,204 @@ function uploadOne(file, index, total) {
   });
 }
 
-// ── Add product ───────────────────────────────────────────────────
-window.addProduct = async () => {
+// ── ENTER EDIT MODE ───────────────────────────────────────────────
+window.startEdit = (id) => {
+  const p = window._products.find(x => x.id === id);
+  if (!p) return;
+
+  editingId = id;
+
+  // Scroll form into view on mobile
+  document.getElementById('formCard').scrollIntoView({behavior:'smooth', block:'start'});
+
+  // Update form UI
+  document.getElementById('formTitle').textContent = 'Editar Producto';
+  document.getElementById('editBadge').classList.add('show');
+
+  // Fill fields
+  document.getElementById('titleIn').value     = p.title || '';
+  document.getElementById('descIn').value      = p.description || '';
+  document.getElementById('priceIn').value     = p.price || '';
+  document.getElementById('origPriceIn').value = p.originalPrice || '';
+  document.getElementById('catIn').value       = p.category || 'mujer';
+
+  // Load existing images
+  const imgs = p.images?.length ? p.images : (p.imageUrl ? [p.imageUrl] : []);
+  pendingImgs = imgs.map(url => ({ type: 'existing', url }));
+  renderPreviews();
+
+  // Change button row: Save + Cancel
+  document.getElementById('btnRow').innerHTML = `
+    <button class="btn-cancel" onclick="cancelEdit()">
+      ✕ Cancelar
+    </button>
+    <button class="btn-submit" id="submitBtn" onclick="saveProduct()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Guardar cambios
+    </button>`;
+
+  // Highlight editing item in list
+  document.querySelectorAll('.prod-item').forEach(el => {
+    el.classList.toggle('editing', el.dataset.id === id);
+  });
+};
+
+// ── CANCEL EDIT ───────────────────────────────────────────────────
+window.cancelEdit = () => {
+  editingId = null;
+  resetForm();
+};
+
+function resetForm() {
+  editingId = null;
+  pendingImgs = [];
+  renderPreviews();
+  document.getElementById('titleIn').value     = '';
+  document.getElementById('descIn').value      = '';
+  document.getElementById('priceIn').value     = '';
+  document.getElementById('origPriceIn').value = '';
+  document.getElementById('catIn').value       = 'mujer';
+  document.getElementById('formTitle').textContent = 'Agregar Producto';
+  document.getElementById('editBadge').classList.remove('show');
+  document.getElementById('progWrap').style.display  = 'none';
+  document.getElementById('progFill').style.width    = '0';
+  document.getElementById('btnRow').innerHTML = `
+    <button class="btn-submit full" id="submitBtn" onclick="saveProduct()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Publicar Producto
+    </button>`;
+  document.querySelectorAll('.prod-item').forEach(el => el.classList.remove('editing'));
+}
+
+// ── SAVE (create or update) ───────────────────────────────────────
+window.saveProduct = async () => {
   const title     = document.getElementById('titleIn').value.trim();
   const desc      = document.getElementById('descIn').value.trim();
   const price     = Number(document.getElementById('priceIn').value);
-  const origPrice = Number(document.getElementById('origPriceIn').value) || 0;
+  const origPrice = Number(document.getElementById('origPriceIn').value) || null;
   const category  = document.getElementById('catIn').value;
 
-  if (!title || !desc || !price || pendingFiles.length === 0) {
-    toast('Completá título, descripción, precio e imágenes', 'err'); return;
+  if (!title || !desc || !price || pendingImgs.length === 0) {
+    toast('Completá título, descripción, precio e imagen', 'err'); return;
   }
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;flex-shrink:0"></div> Subiendo...';
-  document.getElementById('progWrap').style.display = 'block';
+  btn.innerHTML = '<div class="spinner" style="width:17px;height:17px;border-width:2px;flex-shrink:0"></div> Guardando...';
+
+  const newFiles = pendingImgs.filter(x => x.type === 'new');
+  if (newFiles.length > 0) {
+    document.getElementById('progWrap').style.display = 'block';
+  }
 
   try {
-    // Upload all images sequentially
-    const imageUrls = [];
-    for (let i = 0; i < pendingFiles.length; i++) {
-      const url = await uploadOne(pendingFiles[i], i, pendingFiles.length);
-      imageUrls.push(url);
+    // Upload only NEW files
+    const uploadedUrls = [];
+    for (let i = 0; i < newFiles.length; i++) {
+      const url = await uploadOne(newFiles[i].file, i, newFiles.length);
+      uploadedUrls.push(url);
     }
-    document.getElementById('progTxt').textContent = '✅ Imágenes listas, guardando...';
 
-    await addDoc(collection(db, 'products'), {
-      title, description: desc,
-      price,
-      originalPrice: origPrice || null,
-      category,
-      imageUrl: imageUrls[0],   // backwards compat
-      images: imageUrls,        // new multi-image array
-      likes: 0,
-      createdAt: serverTimestamp()
+    // Build final image array preserving order
+    let urlIdx = 0;
+    const finalImages = pendingImgs.map(item => {
+      if (item.type === 'existing') return item.url;
+      return uploadedUrls[urlIdx++];
     });
 
-    toast('¡Producto publicado! 🎉', 'ok');
-    // Reset
-    pendingFiles = [];
-    renderPreviews();
-    document.getElementById('titleIn').value    = '';
-    document.getElementById('descIn').value     = '';
-    document.getElementById('priceIn').value    = '';
-    document.getElementById('origPriceIn').value= '';
-    document.getElementById('progWrap').style.display = 'none';
-    document.getElementById('progFill').style.width   = '0';
+    const data = {
+      title, description: desc, price,
+      originalPrice: origPrice,
+      category,
+      imageUrl:  finalImages[0],
+      images:    finalImages,
+    };
+
+    if (editingId) {
+      // UPDATE
+      await updateDoc(doc(db, 'products', editingId), data);
+      toast('¡Producto actualizado! ✅', 'ok');
+    } else {
+      // CREATE
+      await addDoc(collection(db, 'products'), {
+        ...data, likes: 0, createdAt: serverTimestamp()
+      });
+      toast('¡Producto publicado! 🎉', 'ok');
+    }
+
+    resetForm();
     loadProducts();
   } catch(e) {
     console.error(e);
     toast('Error: ' + e.message, 'err');
-  } finally {
     btn.disabled = false;
-    btn.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Publicar Producto';
   }
 };
 
-// ── Load products list ────────────────────────────────────────────
+// ── LOAD PRODUCTS ─────────────────────────────────────────────────
 window.loadProducts = async () => {
   const el = document.getElementById('prodList');
   el.innerHTML = '<div class="spin-wrap"><div class="spinner"></div></div>';
   try {
     const snap = await getDocs(collection(db, 'products'));
-    const products = snap.docs.map(d => ({id:d.id,...d.data()}));
-    if (!products.length) {
-      el.innerHTML = '<div class="empty-adm">No hay productos aún. ¡Agregá el primero!</div>';
-      return;
-    }
-    const cats = {mujer:'👗 Mujer',hombre:'👔 Hombre',unisex:'✨ Unisex'};
-    el.innerHTML = '<div class="prod-list">' + products.map(p => {
-      const imgs = p.images || [p.imageUrl];
-      const thumbsHtml = imgs.slice(0,3).map(u =>
-        `<img src="${u}" alt="" onerror="this.style.opacity=0">`
-      ).join('');
-      const priceF = Number(p.price).toLocaleString('es-AR');
-      const hasDiscount = p.originalPrice && p.originalPrice > p.price;
-      const discPct = hasDiscount ? Math.round((1 - p.price/p.originalPrice)*100) : 0;
-      return `
-      <div class="prod-item">
-        <div class="prod-thumbs">${thumbsHtml}</div>
-        <div class="prod-info">
-          <div class="prod-title">${p.title}</div>
-          <div class="prod-meta">
-            <span class="prod-price">$${priceF}</span>
-            ${hasDiscount ? `<span class="prod-orig">$${Number(p.originalPrice).toLocaleString('es-AR')}</span><span class="prod-badge">-${discPct}%</span>` : ''}
-            <span class="prod-category">${cats[p.category]||p.category}</span>
-            <span class="prod-likes">❤️ ${p.likes||0}</span>
-            <span style="font-size:.7rem;color:var(--gray)">${imgs.length} foto${imgs.length>1?'s':''}</span>
-          </div>
-        </div>
-        <button class="btn-del" onclick="delProduct('${p.id}')">Eliminar</button>
-      </div>`;
-    }).join('') + '</div>';
+    window._products = snap.docs.map(d => ({id:d.id,...d.data()}));
+    renderList();
   } catch(e) {
-    el.innerHTML = '<div class="empty-adm">Error al cargar.</div>';
+    el.innerHTML = '<div class="empty-adm">Error al cargar. Recargá la página.</div>';
   }
 };
 
-// ── Delete ────────────────────────────────────────────────────────
+function renderList() {
+  const products = window._products;
+  const el = document.getElementById('prodList');
+  document.getElementById('prodCount').textContent =
+    products.length ? `${products.length} producto${products.length!==1?'s':''}` : '';
+
+  if (!products.length) {
+    el.innerHTML = '<div class="empty-adm">No hay productos aún. ¡Agregá el primero!</div>';
+    return;
+  }
+
+  const cats = {mujer:'👗 Mujer', hombre:'👔 Hombre', unisex:'✨ Unisex'};
+  const sorted = [...products].sort((a,b) => (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+
+  el.innerHTML = '<div class="prod-list">' + sorted.map(p => {
+    const imgs     = p.images?.length ? p.images : (p.imageUrl ? [p.imageUrl] : []);
+    const hasDisc  = p.originalPrice && p.originalPrice > p.price;
+    const discPct  = hasDisc ? Math.round((1-p.price/p.originalPrice)*100) : 0;
+    const priceF   = Number(p.price).toLocaleString('es-AR');
+    const isEditing = editingId === p.id;
+    const thumbsHtml = imgs.slice(0,3).map(u =>
+      `<img src="${u}" alt="" loading="lazy" onerror="this.style.opacity=0">`
+    ).join('');
+    return `
+    <div class="prod-item${isEditing?' editing':''}" data-id="${p.id}">
+      <div class="prod-thumbs">${thumbsHtml}</div>
+      <div class="prod-info">
+        <div class="prod-title">${p.title}</div>
+        <div class="prod-meta">
+          <span class="prod-price">$${priceF}</span>
+          ${hasDisc ? `<span class="prod-orig-price">$${Number(p.originalPrice).toLocaleString('es-AR')}</span><span class="prod-disc">-${discPct}%</span>` : ''}
+          <span class="prod-cat">${cats[p.category]||p.category}</span>
+          <span class="prod-likes">❤️ ${p.likes||0}</span>
+          <span class="prod-imgs-count">📷 ${imgs.length}</span>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <button class="btn-edit" onclick="startEdit('${p.id}')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Editar
+        </button>
+        <button class="btn-del" onclick="delProduct('${p.id}')">Eliminar</button>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+// ── DELETE ────────────────────────────────────────────────────────
 window.delProduct = async (id) => {
-  if (!confirm('¿Eliminar este producto?')) return;
+  if (editingId === id) cancelEdit();
+  if (!confirm('¿Eliminar este producto? Esta acción no se puede deshacer.')) return;
   try {
     await deleteDoc(doc(db,'products',id));
     toast('Producto eliminado', 'ok');
@@ -400,20 +534,21 @@ window.delProduct = async (id) => {
   } catch(e) { toast('Error al eliminar','err'); }
 };
 
-// ── Toast ─────────────────────────────────────────────────────────
+// ── TOAST ─────────────────────────────────────────────────────────
 function toast(msg, type) {
   const el = document.getElementById('toast');
-  el.textContent = (type === 'ok' ? '✅ ' : '❌ ') + msg;
+  el.textContent = (type==='ok'?'✅ ':'❌ ') + msg;
   el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 3200);
 }
 
-// Drag & drop
+// ── DRAG & DROP ────────────────────────────────────────────────────
 const drop = document.getElementById('uploadDrop');
-drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('drag'); });
+drop.addEventListener('dragover',  e => { e.preventDefault(); drop.classList.add('drag'); });
 drop.addEventListener('dragleave', () => drop.classList.remove('drag'));
 drop.addEventListener('drop', e => {
-  e.preventDefault(); drop.classList.remove('drag');
+  e.preventDefault();
+  drop.classList.remove('drag');
   window.addImages(e.dataTransfer.files);
 });
 </script>

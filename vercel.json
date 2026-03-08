@@ -6,6 +6,15 @@
       "dest": "/api/producto"
     },
     {
+      "src": "/gestion-dtup-2025",
+      "dest": "/admin.html"
+    },
+    {
+      "src": "/admin.html",
+      "status": 404,
+      "dest": "/404.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
