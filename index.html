@@ -9,8 +9,6 @@
 <meta name="author" content="De Todo Un Poco">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://detodounpocooficialok.vercel.app/">
-
-<!-- Open Graph -->
 <meta property="og:type"        content="website">
 <meta property="og:site_name"   content="De Todo Un Poco">
 <meta property="og:title"       content="De Todo Un Poco | Ropa para Hombre y Mujer">
@@ -18,164 +16,201 @@
 <meta property="og:image"       content="https://detodounpocooficialok.vercel.app/logo.png">
 <meta property="og:url"         content="https://detodounpocooficialok.vercel.app/">
 <meta property="og:locale"      content="es_AR">
-
-<!-- Twitter Card -->
-<meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="De Todo Un Poco | Ropa para Hombre y Mujer">
-<meta name="twitter:description" content="Tienda de ropa online en Argentina. Consultá por WhatsApp.">
-<meta name="twitter:image"       content="https://detodounpocooficialok.vercel.app/logo.png">
-
-<!-- Schema.org JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ClothingStore",
-  "name": "De Todo Un Poco",
-  "description": "Tienda de ropa para hombres y mujeres en Argentina",
-  "url": "https://detodounpocooficialok.vercel.app",
-  "telephone": "+54-9-3734-48-5570",
-  "address": { "@type": "PostalAddress", "addressCountry": "AR" },
-  "sameAs": ["https://www.instagram.com/detodounpoco_oficialok"],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "telephone": "+54-9-3734-48-5570",
-    "availableLanguage": "Spanish"
-  }
-}
-</script>
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="twitter:image"      content="https://detodounpocooficialok.vercel.app/logo.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","name":"De Todo Un Poco","description":"Tienda de ropa para hombres y mujeres en Argentina","url":"https://detodounpocooficialok.vercel.app","telephone":"+54-9-3734-48-5570","sameAs":["https://www.instagram.com/detodounpoco_oficialok"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --peach:#F8B185; --coral:#F67280; --mauve:#C06C84; --slate:#6C5B7B; --ocean:#355C7D;
-  --warm-white:#FAF8F5; --off-white:#F2EEE8; --charcoal:#1C1C1E; --gray:#6B6B6B;
-  --light-gray:#E8E4DF; --font-display:'Playfair Display',Georgia,serif;
-  --font-body:'Outfit',sans-serif; --radius:12px; --radius-sm:8px;
-  --shadow-sm:0 2px 8px rgba(0,0,0,.08); --shadow-md:0 4px 20px rgba(0,0,0,.12);
+:root{
+  --peach:#F8B185;--coral:#F67280;--mauve:#C06C84;--ocean:#355C7D;
+  --warm-white:#FAF8F5;--off-white:#F2EEE8;--charcoal:#1C1C1E;
+  --gray:#6B6B6B;--light-gray:#E8E4DF;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Outfit',sans-serif;
+  --radius:12px;--radius-sm:8px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 4px 20px rgba(0,0,0,.12);
   --shadow-lg:0 8px 40px rgba(0,0,0,.16);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--warm-white);color:var(--charcoal);min-height:100vh;overflow-x:hidden}
 
-/* NAVBAR */
-.navbar{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--light-gray);padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
+/* ── NAVBAR ── */
+.navbar{position:sticky;top:0;z-index:200;background:rgba(250,248,245,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--light-gray);padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
 .navbar.scrolled{box-shadow:var(--shadow-sm)}
-.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo{height:48px;width:auto;object-fit:contain}
-.nav-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--charcoal);line-height:1.1}
-.nav-title span{display:block;font-size:.58rem;font-family:var(--font-body);font-weight:400;color:var(--gray);letter-spacing:.18em;text-transform:uppercase}
-.nav-links{display:flex;align-items:center;gap:1.5rem}
-.nav-links a{text-decoration:none;color:var(--gray);font-size:.82rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{height:44px;width:auto;object-fit:contain}
+.nav-title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--charcoal);line-height:1.1}
+.nav-title span{display:block;font-size:.56rem;font-family:var(--font-body);font-weight:400;color:var(--gray);letter-spacing:.17em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:1.2rem}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:var(--coral)}
-.nav-ig{display:flex!important;align-items:center;gap:6px;background:linear-gradient(135deg,var(--peach),var(--coral),var(--mauve));color:white!important;padding:7px 14px;border-radius:20px;font-size:.76rem!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important;transition:opacity .2s,transform .2s!important}
-.nav-ig:hover{opacity:.9;transform:translateY(-1px);color:white!important}
-.nav-ig svg{width:14px;height:14px;flex-shrink:0}
+.nav-ig{display:flex!important;align-items:center;gap:5px;background:linear-gradient(135deg,var(--peach),var(--coral),var(--mauve));color:white!important;padding:6px 13px;border-radius:18px;font-size:.74rem!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important}
+.nav-ig svg{width:13px;height:13px;flex-shrink:0}
+@media(max-width:640px){.nav-links{display:none}}
 
-/* HERO */
-.hero{position:relative;background:linear-gradient(135deg,#FAF8F5 0%,#F2EEE8 50%,#EDE4DA 100%);padding:5.5rem 2rem 4.5rem;text-align:center;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(246,114,128,.13) 0%,transparent 70%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(53,92,125,.09) 0%,transparent 70%);border-radius:50%}
-.hero-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--coral);margin-bottom:1.1rem}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;color:var(--charcoal);line-height:1.12;margin-bottom:1rem}
+/* ── HERO ── */
+.hero{position:relative;background:linear-gradient(135deg,#FAF8F5 0%,#F2EEE8 55%,#EDE4DA 100%);padding:5rem 1.5rem 4rem;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(246,114,128,.13) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-50px;left:-50px;width:280px;height:280px;background:radial-gradient(circle,rgba(53,92,125,.09) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero-eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem}
+.hero h1{font-family:var(--font-display);font-size:clamp(2rem,6vw,3.8rem);font-weight:700;color:var(--charcoal);line-height:1.12;margin-bottom:.9rem}
 .hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--coral),var(--mauve));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1rem;color:var(--gray);max-width:420px;margin:0 auto 2.5rem;line-height:1.65;font-weight:300}
-.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:white;padding:14px 30px;border-radius:40px;font-weight:600;font-size:.9rem;text-decoration:none;letter-spacing:.03em;transition:transform .2s,box-shadow .2s;box-shadow:var(--shadow-md)}
+.hero-sub{font-size:.95rem;color:var(--gray);max-width:400px;margin:0 auto 2.2rem;line-height:1.65;font-weight:300}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--charcoal);color:white;padding:13px 28px;border-radius:40px;font-weight:600;font-size:.88rem;text-decoration:none;letter-spacing:.03em;transition:transform .2s,box-shadow .2s;box-shadow:var(--shadow-md)}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 
-/* SHOP */
-.shop-section{padding:3rem 2rem 6rem;max-width:1300px;margin:0 auto}
-.section-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
-.section-title{font-family:var(--font-display);font-size:1.85rem;font-weight:700;color:var(--charcoal)}
+/* ── SHOP ── */
+.shop-section{padding:2.5rem 1.5rem 5rem;max-width:1300px;margin:0 auto}
+.section-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem}
+.section-title{font-family:var(--font-display);font-size:1.7rem;font-weight:700}
 .section-title span{font-style:italic;color:var(--coral)}
-.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
-.filter-tab{padding:7px 20px;border-radius:20px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.82rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.filter-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.filter-tab{padding:6px 18px;border-radius:18px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s}
 .filter-tab:hover{border-color:var(--coral);color:var(--coral)}
 .filter-tab.active{background:var(--charcoal);border-color:var(--charcoal);color:white}
-.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:2rem}
-.sort-label{font-size:.82rem;color:var(--gray);font-weight:400}
-.sort-btn{padding:5px 16px;border-radius:14px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s}
+.sort-bar{display:flex;align-items:center;gap:7px;margin-bottom:1.5rem}
+.sort-label{font-size:.8rem;color:var(--gray)}
+.sort-btn{padding:5px 14px;border-radius:13px;border:1.5px solid var(--light-gray);background:white;font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all .2s}
 .sort-btn:hover{border-color:var(--ocean);color:var(--ocean)}
 .sort-btn.active{background:var(--ocean);border-color:var(--ocean);color:white}
 
-/* GRID */
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.5rem}
+/* ── PRODUCT GRID ── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+@media(max-width:500px){.products-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}}
 
-/* CARD */
+/* ── PRODUCT CARD ── */
 .product-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;animation:fadeInUp .4s ease both}
-.product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
-.card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block}
-.product-card:hover .card-img-wrap img{transform:scale(1.04)}
-.badge-hot{position:absolute;top:11px;left:11px;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:10px;box-shadow:0 2px 10px rgba(246,114,128,.45)}
-.card-cat{position:absolute;top:11px;right:11px;background:rgba(28,28,30,.72);backdrop-filter:blur(4px);color:white;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:8px}
-.card-body{padding:1rem 1rem .8rem;flex:1;display:flex;flex-direction:column}
-.card-title{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--charcoal);margin-bottom:.35rem;line-height:1.3;cursor:pointer}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+/* Card image slider */
+.card-slider{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer;user-select:none;touch-action:pan-y}
+.card-slides{display:flex;height:100%;transition:transform .3s ease;will-change:transform}
+.card-slide{min-width:100%;height:100%;flex-shrink:0}
+.card-slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.card-prev,.card-next{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;background:rgba(28,28,30,.55);backdrop-filter:blur(4px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:2;padding:0}
+.card-slider:hover .card-prev,.card-slider:hover .card-next{opacity:1}
+.card-prev{left:8px}
+.card-next{right:8px}
+.card-prev svg,.card-next svg{width:14px;height:14px;flex-shrink:0}
+.card-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:2}
+.card-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);transition:background .2s,transform .2s;cursor:pointer}
+.card-dot.active{background:white;transform:scale(1.25)}
+
+.badge-hot{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:9px;box-shadow:0 2px 8px rgba(246,114,128,.4);z-index:2}
+.badge-sale{position:absolute;top:10px;left:10px;background:#FF6B35;color:white;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:9px;z-index:2}
+.badge-hot-sale{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:3px;z-index:2}
+.card-cat{position:absolute;top:10px;right:10px;background:rgba(28,28,30,.68);backdrop-filter:blur(4px);color:white;font-size:.58rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:7px;z-index:2}
+
+.card-body{padding:.85rem .85rem .6rem;flex:1;display:flex;flex-direction:column}
+.card-title{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--charcoal);margin-bottom:.3rem;line-height:1.3;cursor:pointer}
 .card-title:hover{color:var(--coral)}
-.card-desc{font-size:.8rem;color:var(--gray);line-height:1.55;flex:1;margin-bottom:.8rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-price{font-size:1.2rem;font-weight:700;color:var(--ocean);margin-bottom:.9rem}
-.card-price span{font-size:.72rem;font-weight:400;color:var(--gray)}
-.card-actions{display:flex;gap:8px;padding:0 1rem 1rem}
-.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:10px 14px;font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;letter-spacing:.02em}
+.card-desc{font-size:.76rem;color:var(--gray);line-height:1.5;flex:1;margin-bottom:.7rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price-block{margin-bottom:.8rem;display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.price-sale{font-size:1.15rem;font-weight:700;color:var(--ocean)}
+.price-orig{font-size:.8rem;color:var(--gray);text-decoration:line-through;font-weight:400}
+.price-pct{font-size:.68rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:2px 7px;border-radius:8px}
+.card-actions{display:flex;gap:7px;padding:0 .85rem .85rem}
+.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:9px 10px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s}
 .btn-wa:hover{background:#1da851;transform:translateY(-1px)}
-.btn-wa svg{width:16px;height:16px;flex-shrink:0}
-.btn-like{display:flex;align-items:center;justify-content:center;gap:5px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:10px 13px;font-family:var(--font-body);font-size:.82rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;min-width:62px}
+.btn-wa svg{width:15px;height:15px;flex-shrink:0}
+.btn-like{display:flex;align-items:center;justify-content:center;gap:4px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:9px 11px;font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;min-width:56px}
 .btn-like:hover{border-color:var(--coral);color:var(--coral)}
 .btn-like.liked{background:#FFF0F2;border-color:var(--coral);color:var(--coral)}
-.btn-like svg{width:16px;height:16px;flex-shrink:0;transition:transform .2s}
-.btn-like.liked svg{transform:scale(1.18)}
-.btn-like.liked svg path{fill:var(--coral)}
+.btn-like svg{width:15px;height:15px;flex-shrink:0;transition:transform .2s}
+.btn-like.liked svg{transform:scale(1.2)}
+.btn-like.liked path{fill:var(--coral)}
 
-/* STATES */
-.empty-state{grid-column:1/-1;text-align:center;padding:5rem 2rem;color:var(--gray)}
-.empty-state svg{width:60px;height:60px;opacity:.25;margin-bottom:1rem}
-.empty-state p{font-size:.95rem}
-.loading-state{grid-column:1/-1;display:flex;justify-content:center;padding:5rem}
-.spinner{width:38px;height:38px;border:3px solid var(--light-gray);border-top-color:var(--coral);border-radius:50%;animation:spin .8s linear infinite}
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:white;border-radius:20px;width:min(900px,100%);max-height:96vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative;transform:scale(.96);transition:transform .25s}
+.modal-overlay.open .modal{transform:scale(1)}
+@media(max-width:620px){.modal{grid-template-columns:1fr;max-height:98vh;border-radius:16px}}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(28,28,30,.7);color:white;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s}
+.modal-close:hover{background:var(--charcoal)}
+
+/* Modal gallery */
+.modal-gallery{position:relative;background:var(--off-white);overflow:hidden}
+.modal-gallery,.modal-gallery .mg-slides{height:100%;min-height:320px}
+@media(max-width:620px){.modal-gallery{height:55vw;min-height:200px}}
+.mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
+.mg-slide{min-width:100%;height:100%;flex-shrink:0}
+.mg-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(28,28,30,.6);backdrop-filter:blur(6px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;padding:0}
+.mg-prev:hover,.mg-next:hover{background:var(--charcoal)}
+.mg-prev{left:10px}.mg-next{right:10px}
+.mg-prev svg,.mg-next svg{width:16px;height:16px;flex-shrink:0}
+.mg-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2}
+.mg-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .2s}
+.mg-dot.active{background:white;transform:scale(1.3)}
+.mg-counter{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);color:white;font-size:.7rem;padding:3px 9px;border-radius:10px;font-weight:600}
+
+/* Modal info */
+.modal-info{padding:1.8rem 1.6rem;overflow-y:auto;display:flex;flex-direction:column}
+@media(max-width:620px){.modal-info{padding:1.2rem 1rem}}
+.modal-cat{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:.8rem}
+.modal-title{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;line-height:1.2;margin-bottom:.8rem}
+.modal-price-block{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.modal-price{font-size:1.7rem;font-weight:700;color:var(--ocean)}
+.modal-orig{font-size:.9rem;color:var(--gray);text-decoration:line-through}
+.modal-pct{font-size:.74rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:3px 9px;border-radius:9px}
+.modal-desc{font-size:.88rem;color:var(--gray);line-height:1.7;flex:1;margin-bottom:1.5rem}
+.modal-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 20px;font-family:var(--font-body);font-size:.95rem;font-weight:700;text-decoration:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;width:100%;letter-spacing:.02em}
+.modal-wa:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,.45)}
+.modal-wa svg{width:20px;height:20px;flex-shrink:0}
+.modal-like-row{display:flex;align-items:center;gap:.5rem;margin-top:.8rem}
+.modal-like-btn{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid var(--light-gray);border-radius:30px;padding:8px 16px;font-family:var(--font-body);font-size:.82rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s}
+.modal-like-btn:hover{border-color:var(--coral);color:var(--coral)}
+.modal-like-btn.liked{background:#FFF0F2;border-color:var(--coral);color:var(--coral)}
+.modal-like-btn svg{width:15px;height:15px;flex-shrink:0}
+.modal-like-btn.liked path{fill:var(--coral)}
+
+/* Thumbnail strip */
+.mg-thumbs{display:flex;gap:6px;padding:8px 1.6rem;overflow-x:auto;scrollbar-width:none;background:var(--off-white)}
+.mg-thumbs::-webkit-scrollbar{display:none}
+.mg-thumb{width:52px;height:62px;border-radius:6px;overflow:hidden;cursor:pointer;flex-shrink:0;border:2px solid transparent;transition:border-color .2s;opacity:.7;transition:all .2s}
+.mg-thumb.active{border-color:var(--coral);opacity:1}
+.mg-thumb img{width:100%;height:100%;object-fit:cover}
+@media(max-width:620px){.mg-thumbs{padding:6px 1rem}}
+
+/* ── STATES ── */
+.empty-state{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--gray)}
+.empty-state svg{width:56px;height:56px;opacity:.22;margin-bottom:.8rem}
+.loading-state{grid-column:1/-1;display:flex;justify-content:center;padding:4rem}
+.spinner{width:36px;height:36px;border:3px solid var(--light-gray);border-top-color:var(--coral);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* FLOAT WA */
-.float-wa{position:fixed;bottom:28px;right:28px;z-index:999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);text-decoration:none;transition:transform .25s,box-shadow .25s;animation:waPulse 3s ease-in-out infinite}
-.float-wa:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
-.float-wa svg{width:30px;height:30px}
-.float-wa .wa-tip{position:absolute;right:70px;background:var(--charcoal);color:white;font-size:.78rem;font-weight:500;white-space:nowrap;padding:7px 14px;border-radius:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+/* ── FLOAT WA ── */
+.float-wa{position:fixed;bottom:24px;right:24px;z-index:400;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;transition:transform .25s,box-shadow .25s;animation:waPulse 3s ease-in-out infinite}
+.float-wa:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6)}
+.float-wa svg{width:28px;height:28px}
+.float-wa .wa-tip{position:absolute;right:66px;background:var(--charcoal);color:white;font-size:.76rem;font-weight:500;white-space:nowrap;padding:6px 13px;border-radius:18px;opacity:0;pointer-events:none;transition:opacity .2s}
 .float-wa:hover .wa-tip{opacity:1}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 32px rgba(37,211,102,.72)}}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
 
-/* FOOTER */
-footer{background:var(--charcoal);color:rgba(255,255,255,.55);text-align:center;padding:2.2rem;font-size:.82rem;line-height:1.9}
-footer strong{color:white;font-family:var(--font-display);font-style:italic;font-size:1rem}
+/* ── FOOTER ── */
+footer{background:var(--charcoal);color:rgba(255,255,255,.5);text-align:center;padding:2rem 1.5rem;font-size:.8rem;line-height:1.9}
+footer strong{color:white;font-family:var(--font-display);font-style:italic;font-size:.95rem}
 footer a{color:var(--peach);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-/* RESPONSIVE */
-@media(max-width:640px){
-  .navbar{padding:0 1rem}
-  .nav-links{display:none}
-  .shop-section{padding:2rem 1rem 5rem}
-  .products-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}
-  .card-desc{display:none}
-  .hero{padding:3.5rem 1.5rem 3rem}
-  .float-wa{bottom:20px;right:20px;width:52px;height:52px}
-}
-
-@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-brand">
     <img src="logo.png" alt="De Todo Un Poco" class="nav-logo">
-    <div class="nav-title">
-      De Todo Un Poco
-      <span>Moda para todos</span>
-    </div>
+    <div class="nav-title">De Todo Un Poco<span>Moda para todos</span></div>
   </a>
   <div class="nav-links">
-    <a href="#tienda" onclick="event.preventDefault();document.getElementById('tienda').scrollIntoView({behavior:'smooth',block:'start'})">Tienda</a>
+    <a href="#tienda" onclick="scrollTo('tienda')">Tienda</a>
     <a href="https://wa.me/5493734485570" target="_blank">WhatsApp</a>
     <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank" class="nav-ig">
       <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -184,16 +219,18 @@ footer a:hover{text-decoration:underline}
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow">✦ Nueva colección disponible</p>
   <h1>Moda para <em>ella</em><br>y para <em>él</em></h1>
-  <p class="hero-sub">Encontrá las prendas que buscás. Estilo, calidad y precios accesibles — todo en un solo lugar.</p>
-  <a href="#tienda" class="hero-cta" onclick="event.preventDefault();document.getElementById('tienda').scrollIntoView({behavior:'smooth',block:'start'})">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+  <p class="hero-sub">Encontrá las prendas que buscás. Estilo, calidad y precios accesibles.</p>
+  <a href="#tienda" class="hero-cta" onclick="event.preventDefault();scrollTo('tienda')">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     Ver la tienda
   </a>
 </section>
 
+<!-- SHOP -->
 <section class="shop-section" id="tienda">
   <div class="section-header">
     <h2 class="section-title">Nuestra <span>Tienda</span></h2>
@@ -214,139 +251,330 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <strong>De Todo Un Poco</strong><br>
-  <a href="https://wa.me/5493734485570" target="_blank">📱 +54 9 3734 48-5570</a>
-  &nbsp;·&nbsp;
-  <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank">📸 @detodounpoco_oficialok</a>
-  &nbsp;·&nbsp; Argentina<br>
-  <small style="opacity:.35;font-size:.68rem;margin-top:.5rem;display:block">© 2025 De Todo Un Poco</small>
+  <a href="https://wa.me/5493734485570" target="_blank">📱 +54 9 3734 48-5570</a> &nbsp;·&nbsp;
+  <a href="https://www.instagram.com/detodounpoco_oficialok" target="_blank">📸 @detodounpoco_oficialok</a> &nbsp;·&nbsp; Argentina<br>
+  <small style="opacity:.3;font-size:.66rem;margin-top:.4rem;display:block">© 2025 De Todo Un Poco</small>
 </footer>
 
-<a href="https://wa.me/5493734485570" target="_blank" class="float-wa" title="Contactar por WhatsApp">
+<!-- FLOAT WA -->
+<a href="https://wa.me/5493734485570" target="_blank" class="float-wa">
   <span class="wa-tip">💬 Consultanos</span>
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalDirect()">×</button>
+
+    <!-- Gallery side -->
+    <div style="display:flex;flex-direction:column">
+      <div class="modal-gallery" id="mgGallery">
+        <div class="mg-slides" id="mgSlides"></div>
+        <button class="mg-prev" id="mgPrev" onclick="mgMove(-1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="mg-next" id="mgNext" onclick="mgMove(1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="mg-dots" id="mgDots"></div>
+        <div class="mg-counter" id="mgCounter"></div>
+      </div>
+      <div class="mg-thumbs" id="mgThumbs"></div>
+    </div>
+
+    <!-- Info side -->
+    <div class="modal-info" id="modalInfo"></div>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, getDocs, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { getFirestore, collection, getDocs, doc, updateDoc, increment }
+  from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-// ── Config (ya completada) ──────────────────────────────────────
-const firebaseConfig = {
-  apiKey:            "AIzaSyClX9La52fBjrENUtumJh6gF40bldAmxaU",
-  authDomain:        "detodounpocooficialok-6b190.firebaseapp.com",
-  projectId:         "detodounpocooficialok-6b190",
-  storageBucket:     "detodounpocooficialok-6b190.firebasestorage.app",
-  messagingSenderId: "236091151621",
-  appId:             "1:236091151621:web:bf63710dbfcc5d40a2d36c"
+const FB_CONF = {
+  apiKey:"AIzaSyClX9La52fBjrENUtumJh6gF40bldAmxaU",
+  authDomain:"detodounpocooficialok-6b190.firebaseapp.com",
+  projectId:"detodounpocooficialok-6b190",
+  storageBucket:"detodounpocooficialok-6b190.firebasestorage.app",
+  messagingSenderId:"236091151621",
+  appId:"1:236091151621:web:bf63710dbfcc5d40a2d36c"
 };
-const WA_NUMBER  = '5493734485570';
-const SITE_URL   = window.location.origin; // se detecta automáticamente
+const WA = '5493734485570';
+const SITE = window.location.origin;
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(FB_CONF);
 const db  = getFirestore(app);
 
-// ── State ───────────────────────────────────────────────────────
-let allProducts    = [];
-let currentFilter  = 'all';
-let currentSort    = 'hot';
-const liked        = JSON.parse(localStorage.getItem('dtup_liked') || '[]');
+let allProducts   = [];
+let currentFilter = 'all';
+let currentSort   = 'hot';
+const liked       = JSON.parse(localStorage.getItem('dtup_liked') || '[]');
 
-// ── Load ────────────────────────────────────────────────────────
+// ── Scroll helper ─────────────────────────────────────────────────
+window.scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+};
+
+// ── Load ──────────────────────────────────────────────────────────
 async function loadProducts() {
   try {
     const snap = await getDocs(collection(db, 'products'));
-    allProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    allProducts = snap.docs.map(d => ({id:d.id,...d.data()}));
     render();
-  } catch (e) {
-    console.error(e);
-    document.getElementById('productsGrid').innerHTML = `
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <p>Error al cargar. Revisá la consola.</p>
-      </div>`;
+  } catch(e) {
+    document.getElementById('productsGrid').innerHTML =
+      `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Error al cargar. Intentá recargar la página.</p></div>`;
   }
 }
 
+// ── Render grid ───────────────────────────────────────────────────
 function render() {
   let list = [...allProducts];
   if (currentFilter !== 'all') list = list.filter(p => p.category === currentFilter);
-  if (currentSort === 'hot')   list.sort((a,b) => (b.likes||0) - (a.likes||0));
-  else                         list.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+  if (currentSort === 'hot') list.sort((a,b) => (b.likes||0)-(a.likes||0));
+  else list.sort((a,b) => (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
 
   const grid = document.getElementById('productsGrid');
   if (!list.length) {
-    grid.innerHTML = `<div class="empty-state">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <p>No hay productos en esta categoría aún.</p>
-    </div>`;
+    grid.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>No hay productos en esta categoría.</p></div>`;
     return;
   }
-
-  const maxLikes    = Math.max(...list.map(p => p.likes||0), 0);
-  const hotThreshold = Math.max(5, maxLikes * 0.6);
+  const maxLikes = Math.max(...list.map(p=>p.likes||0), 0);
+  const hotThr   = Math.max(5, maxLikes * 0.6);
 
   grid.innerHTML = list.map((p, i) => {
-    const isHot   = (p.likes||0) >= hotThreshold && p.likes > 0;
-    const isLiked = liked.includes(p.id);
-    const price   = Number(p.price).toLocaleString('es-AR');
-    const catLabel = p.category === 'mujer' ? '👗 Mujer' : p.category === 'hombre' ? '👔 Hombre' : '✨ Unisex';
-
-    // ✅ El link incluye la URL del producto → WhatsApp muestra la imagen
-    const productUrl = `${SITE_URL}/producto?id=${p.id}`;
-    const waText     = encodeURIComponent(`Hola! Me interesa *${p.title}* por $${price}. ¿Está disponible? ${productUrl}`);
-    const waLink     = `https://wa.me/${WA_NUMBER}?text=${waText}`;
+    const imgs     = p.images?.length ? p.images : [p.imageUrl];
+    const isHot    = (p.likes||0) >= hotThr && p.likes > 0;
+    const isLiked  = liked.includes(p.id);
+    const hasDisc  = p.originalPrice && p.originalPrice > p.price;
+    const discPct  = hasDisc ? Math.round((1 - p.price/p.originalPrice)*100) : 0;
+    const priceF   = Number(p.price).toLocaleString('es-AR');
+    const origF    = hasDisc ? Number(p.originalPrice).toLocaleString('es-AR') : '';
+    const catLabel = p.category==='mujer'?'👗 Mujer':p.category==='hombre'?'👔 Hombre':'✨ Unisex';
+    const productUrl = `${SITE}/producto?id=${p.id}`;
+    const waText   = encodeURIComponent(`Hola! Me interesa *${p.title}* por $${priceF}. ¿Está disponible? ${productUrl}`);
+    const waLink   = `https://wa.me/${WA}?text=${waText}`;
+    const dotsHtml = imgs.length > 1
+      ? `<div class="card-dots">${imgs.map((_,j)=>`<div class="card-dot${j===0?' active':''}" onclick="event.stopPropagation();cardGoTo('${p.id}',${j})"></div>`).join('')}</div>`
+      : '';
+    const slidesHtml = imgs.map(u=>`<div class="card-slide"><img src="${u}" alt="${p.title}" loading="lazy"></div>`).join('');
+    const badgeHtml = (isHot && hasDisc)
+      ? `<div class="badge-hot-sale"><span class="badge-hot">🔥 Hot</span><span class="badge-sale">-${discPct}%</span></div>`
+      : isHot ? `<div class="badge-hot">🔥 Hot</div>`
+      : hasDisc ? `<div class="badge-sale">-${discPct}%</div>` : '';
 
     return `
-    <div class="product-card" style="animation-delay:${i*.05}s">
-      <div class="card-img-wrap" onclick="window.open('/producto?id=${p.id}','_blank')">
-        <img src="${p.imageUrl}" alt="${p.title}" loading="lazy">
-        ${isHot ? '<div class="badge-hot">🔥 Hot</div>' : ''}
+    <div class="product-card" style="animation-delay:${i*.05}s" data-id="${p.id}">
+      <div class="card-slider" id="cs_${p.id}"
+           onclick="openModal('${p.id}')"
+           ontouchstart="tsStart(event,'${p.id}')"
+           ontouchend="tsEnd(event,'${p.id}')">
+        <div class="card-slides" id="csl_${p.id}">${slidesHtml}</div>
+        ${imgs.length>1 ? `<button class="card-prev" onclick="event.stopPropagation();cardMove('${p.id}',-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="card-next" onclick="event.stopPropagation();cardMove('${p.id}',1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>` : ''}
+        ${badgeHtml}
         <div class="card-cat">${catLabel}</div>
+        ${dotsHtml}
       </div>
       <div class="card-body">
-        <div class="card-title" onclick="window.open('/producto?id=${p.id}','_blank')">${p.title}</div>
+        <div class="card-title" onclick="openModal('${p.id}')">${p.title}</div>
         <div class="card-desc">${p.description}</div>
-        <div class="card-price">$${price} <span>ARS</span></div>
+        <div class="price-block">
+          <span class="price-sale">$${priceF}</span>
+          ${hasDisc ? `<span class="price-orig">$${origF}</span><span class="price-pct">-${discPct}%</span>` : ''}
+        </div>
       </div>
       <div class="card-actions">
-        <a href="${waLink}" target="_blank" class="btn-wa">
+        <a href="${waLink}" target="_blank" class="btn-wa" onclick="event.stopPropagation()">
           <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           Consultar
         </a>
-        <button class="btn-like ${isLiked?'liked':''}" onclick="toggleLike('${p.id}',this)">
+        <button class="btn-like ${isLiked?'liked':''}" onclick="event.stopPropagation();toggleLike('${p.id}',this)">
           <svg viewBox="0 0 24 24" fill="${isLiked?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           <span>${p.likes||0}</span>
         </button>
       </div>
     </div>`;
   }).join('');
+
+  // Init touch tracking map
+  window._touchStart = {};
 }
 
-// ── Like ────────────────────────────────────────────────────────
-window.toggleLike = async (id, btn) => {
-  const idx     = liked.indexOf(id);
+// ── Card slider state ─────────────────────────────────────────────
+const cardIdx = {};
+window.cardMove = (id, dir) => {
+  const p    = allProducts.find(x=>x.id===id);
+  const imgs = p?.images?.length ? p.images : [p?.imageUrl];
+  if (!imgs || imgs.length < 2) return;
+  cardIdx[id] = ((cardIdx[id]||0) + dir + imgs.length) % imgs.length;
+  cardGoTo(id, cardIdx[id]);
+};
+window.cardGoTo = (id, idx) => {
+  cardIdx[id] = idx;
+  const sl = document.getElementById('csl_' + id);
+  if (sl) sl.style.transform = `translateX(-${idx*100}%)`;
+  const dots = document.querySelectorAll(`#cs_${id} .card-dot`);
+  dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+};
+
+// ── Touch swipe on cards ──────────────────────────────────────────
+window._touchStart = {};
+window.tsStart = (e, id) => { window._touchStart[id] = e.touches[0].clientX; };
+window.tsEnd = (e, id) => {
+  const start = window._touchStart[id];
+  if (start == null) return;
+  const diff = start - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) window.cardMove(id, diff > 0 ? 1 : -1);
+  delete window._touchStart[id];
+};
+
+// ── MODAL ─────────────────────────────────────────────────────────
+let mgCurrentIdx = 0;
+let mgImages     = [];
+let mgProductId  = null;
+let mgTouchStartX = null;
+
+window.openModal = (id) => {
+  const p   = allProducts.find(x => x.id === id);
+  if (!p) return;
+  mgProductId  = id;
+  mgImages     = p.images?.length ? p.images : [p.imageUrl];
+  mgCurrentIdx = 0;
+  document.body.style.overflow = 'hidden';
+
+  const hasDisc = p.originalPrice && p.originalPrice > p.price;
+  const discPct = hasDisc ? Math.round((1-p.price/p.originalPrice)*100) : 0;
+  const priceF  = Number(p.price).toLocaleString('es-AR');
+  const origF   = hasDisc ? Number(p.originalPrice).toLocaleString('es-AR') : '';
+  const isLiked = liked.includes(id);
+  const catLabel = p.category==='mujer'?'👗 Mujer':p.category==='hombre'?'👔 Hombre':'✨ Unisex';
+  const productUrl = `${SITE}/producto?id=${id}`;
+  const waText = encodeURIComponent(`Hola! Me interesa *${p.title}* por $${priceF}. ¿Está disponible? ${productUrl}`);
+
+  // Slides
+  document.getElementById('mgSlides').innerHTML =
+    mgImages.map(u=>`<div class="mg-slide"><img src="${u}" alt="${p.title}" loading="eager"></div>`).join('');
+
+  // Dots
+  document.getElementById('mgDots').innerHTML = mgImages.length > 1
+    ? mgImages.map((_,i)=>`<div class="mg-dot${i===0?' active':''}"></div>`).join('') : '';
+
+  // Counter
+  document.getElementById('mgCounter').textContent =
+    mgImages.length > 1 ? `1 / ${mgImages.length}` : '';
+
+  // Prev/Next visibility
+  document.getElementById('mgPrev').style.display = mgImages.length > 1 ? '' : 'none';
+  document.getElementById('mgNext').style.display = mgImages.length > 1 ? '' : 'none';
+
+  // Thumbnails
+  document.getElementById('mgThumbs').innerHTML = mgImages.length > 1
+    ? mgImages.map((u,i)=>`<div class="mg-thumb${i===0?' active':''}" onclick="mgGoTo(${i})"><img src="${u}" alt=""></div>`).join('') : '';
+
+  // Info
+  document.getElementById('modalInfo').innerHTML = `
+    <div class="modal-cat">${catLabel}</div>
+    <h2 class="modal-title">${p.title}</h2>
+    <div class="modal-price-block">
+      <span class="modal-price">$${priceF}</span>
+      ${hasDisc ? `<span class="modal-orig">$${origF}</span><span class="modal-pct">-${discPct}%</span>` : ''}
+    </div>
+    <p class="modal-desc">${p.description}</p>
+    <a href="https://wa.me/${WA}?text=${waText}" target="_blank" class="modal-wa">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Consultar por WhatsApp
+    </a>
+    <div class="modal-like-row">
+      <button id="modalLikeBtn" class="modal-like-btn${isLiked?' liked':''}" onclick="toggleLike('${id}', this, true)">
+        <svg viewBox="0 0 24 24" fill="${isLiked?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span id="modalLikeCount">${p.likes||0}</span> Me gusta
+      </button>
+    </div>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+
+  // Touch swipe on modal gallery
+  const gal = document.getElementById('mgGallery');
+  gal.ontouchstart = e => { mgTouchStartX = e.touches[0].clientX; };
+  gal.ontouchend   = e => {
+    if (mgTouchStartX == null) return;
+    const diff = mgTouchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) mgMove(diff > 0 ? 1 : -1);
+    mgTouchStartX = null;
+  };
+};
+
+window.mgGoTo = (idx) => {
+  mgCurrentIdx = idx;
+  document.getElementById('mgSlides').style.transform = `translateX(-${idx*100}%)`;
+  document.querySelectorAll('.mg-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+  document.querySelectorAll('.mg-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+  const cnt = document.getElementById('mgCounter');
+  if (mgImages.length > 1) cnt.textContent = `${idx+1} / ${mgImages.length}`;
+};
+
+window.mgMove = (dir) => {
+  mgGoTo((mgCurrentIdx + dir + mgImages.length) % mgImages.length);
+};
+
+window.closeModal = (e) => {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+};
+window.closeModalDirect = () => {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('modalOverlay').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModalDirect();
+  if (e.key === 'ArrowRight') mgMove(1);
+  if (e.key === 'ArrowLeft')  mgMove(-1);
+});
+
+// ── Like ──────────────────────────────────────────────────────────
+window.toggleLike = async (id, btn, fromModal=false) => {
+  const idx      = liked.indexOf(id);
   const wasLiked = idx !== -1;
   wasLiked ? liked.splice(idx,1) : liked.push(id);
   localStorage.setItem('dtup_liked', JSON.stringify(liked));
 
-  const delta   = wasLiked ? -1 : 1;
+  const delta     = wasLiked ? -1 : 1;
   const isNowLiked = !wasLiked;
+
+  // Update clicked button
   btn.classList.toggle('liked', isNowLiked);
-  const svg = btn.querySelector('svg');
+  const svg  = btn.querySelector('svg');
   svg.setAttribute('fill', isNowLiked ? 'currentColor' : 'none');
   const span = btn.querySelector('span');
   span.textContent = parseInt(span.textContent) + delta;
 
+  // Sync modal like button if triggered from card
+  if (!fromModal && mgProductId === id) {
+    const mlb = document.getElementById('modalLikeBtn');
+    if (mlb) {
+      mlb.classList.toggle('liked', isNowLiked);
+      mlb.querySelector('svg').setAttribute('fill', isNowLiked ? 'currentColor' : 'none');
+      const mc = document.getElementById('modalLikeCount');
+      if (mc) mc.textContent = parseInt(mc.textContent) + delta;
+    }
+  }
+
   const p = allProducts.find(p => p.id === id);
   if (p) p.likes = (p.likes||0) + delta;
 
-  try { await updateDoc(doc(db,'products',id), { likes: increment(delta) }); }
+  try { await updateDoc(doc(db,'products',id), {likes: increment(delta)}); }
   catch(e) { console.error(e); }
 };
 
-// ── Filters / Sort ───────────────────────────────────────────────
+// ── Filters / Sort ────────────────────────────────────────────────
 document.querySelectorAll('.filter-tab').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -360,10 +588,10 @@ document.querySelectorAll('.sort-btn').forEach(btn => btn.addEventListener('clic
   render();
 }));
 
-// ── Navbar scroll ────────────────────────────────────────────────
+// ── Navbar ────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
+}, {passive:true});
 
 loadProducts();
 </script>
