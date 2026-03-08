@@ -80,7 +80,15 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 
 /* ── PRODUCT GRID ── */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
-@media(max-width:500px){.products-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}.card-actions{padding:0 .6rem .7rem;gap:5px}.btn-wa{font-size:.72rem;padding:9px 6px}.btn-like{padding:9px 8px;font-size:.72rem}}
+
+/* FIX MÓVIL: botón consultar + grid */
+@media(max-width:500px){
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .card-actions{padding:0 .5rem .7rem;gap:4px;flex-wrap:nowrap}
+  .btn-wa{font-size:.7rem;padding:9px 5px;gap:3px;letter-spacing:0;overflow:hidden}
+  .btn-wa svg{display:none}
+  .btn-like{padding:9px 8px;font-size:.7rem;flex-shrink:0}
+}
 
 /* ── PRODUCT CARD ── */
 .product-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;animation:fadeInUp .4s ease both}
@@ -114,7 +122,7 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .price-orig{font-size:.8rem;color:var(--gray);text-decoration:line-through;font-weight:400}
 .price-pct{font-size:.68rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:2px 7px;border-radius:8px}
 .card-actions{display:flex;gap:6px;padding:0 .85rem .85rem;min-width:0}
-.btn-wa{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:9px 8px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;overflow:hidden}
+.btn-wa{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:9px 8px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap;overflow:hidden}
 .btn-wa:hover{background:#1da851;transform:translateY(-1px)}
 .btn-wa svg{width:15px;height:15px;flex-shrink:0}
 .btn-like{display:flex;align-items:center;justify-content:center;gap:4px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:9px 10px;font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
@@ -129,14 +137,22 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal{background:white;border-radius:20px;width:min(900px,100%);max-height:96vh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative;transform:scale(.96);transition:transform .25s}
 .modal-overlay.open .modal{transform:scale(1)}
-@media(max-width:620px){.modal{grid-template-columns:1fr;max-height:98vh;border-radius:16px}}
+
+/* FIX MODAL MÓVIL: imagen más chica, scroll en info */
+@media(max-width:620px){
+  .modal{grid-template-columns:1fr;max-height:95vh;border-radius:16px;overflow-y:auto}
+  .modal-gallery{height:auto;aspect-ratio:3/4;min-height:unset;max-height:50vh}
+  .mg-slide img{object-fit:cover}
+  .mg-thumbs{display:none}
+  .modal-info{padding:1rem;overflow-y:visible}
+}
+
 .modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(28,28,30,.7);color:white;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s}
 .modal-close:hover{background:var(--charcoal)}
 
 /* Modal gallery */
 .modal-gallery{position:relative;background:var(--off-white);overflow:hidden}
 .modal-gallery{height:100%;min-height:300px}.modal-gallery .mg-slides{height:100%;display:flex}
-@media(max-width:620px){.modal-gallery{height:auto;aspect-ratio:4/5;min-height:unset}}
 .mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
 .mg-slide{min-width:100%;height:100%;flex-shrink:0}
 .mg-slide img{width:100%;height:100%;object-fit:contain;display:block;background:var(--off-white)}
@@ -151,7 +167,6 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 
 /* Modal info */
 .modal-info{padding:1.8rem 1.6rem;overflow-y:auto;display:flex;flex-direction:column}
-@media(max-width:620px){.modal-info{padding:1.2rem 1rem}}
 .modal-cat{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:.8rem}
 .modal-title{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;line-height:1.2;margin-bottom:.8rem}
 .modal-price-block{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
@@ -175,7 +190,6 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .mg-thumb{width:52px;height:62px;border-radius:6px;overflow:hidden;cursor:pointer;flex-shrink:0;border:2px solid transparent;transition:border-color .2s;opacity:.7;transition:all .2s}
 .mg-thumb.active{border-color:var(--coral);opacity:1}
 .mg-thumb img{width:100%;height:100%;object-fit:cover}
-@media(max-width:620px){.mg-thumbs{padding:6px 1rem}}
 
 /* ── STATES ── */
 .empty-state{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--gray)}
@@ -198,8 +212,24 @@ footer strong{color:white;font-family:var(--font-display);font-style:italic;font
 footer a{color:var(--peach);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
+/* ── INSTALL BUTTON ── */
+.install-bar{position:fixed;bottom:92px;right:16px;z-index:399;display:none;animation:fadeInUp .4s ease both}
+.install-bar.visible{display:flex}
+.btn-install{display:flex;align-items:center;gap:9px;background:var(--charcoal);color:white;border:none;border-radius:30px;padding:11px 20px;font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;box-shadow:var(--shadow-lg);transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.btn-install:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.btn-install svg{width:16px;height:16px;flex-shrink:0}
+.btn-install-close{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:white;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:2px;flex-shrink:0;transition:background .2s}
+.btn-install-close:hover{background:rgba(255,255,255,.3)}
+
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F67280">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="De Todo Un Poco">
+<link rel="apple-touch-icon" href="logo.png">
 <script src="firebase-config.js"></script>
 </head>
 <body>
@@ -211,7 +241,7 @@ footer a:hover{text-decoration:underline}
     <div class="nav-title">De Todo Un Poco<span>Moda para todos</span></div>
   </a>
   <div class="nav-links">
-    <a href="#tienda" onclick="scrollTo('tienda')">Tienda</a>
+    <a href="#tienda" onclick="scrollToSection('tienda')">Tienda</a>
     <a href="#" id="navWaLink" target="_blank">WhatsApp</a>
     <a href="#" id="navIgLink" target="_blank" class="nav-ig">
       <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -225,7 +255,7 @@ footer a:hover{text-decoration:underline}
   <p class="hero-eyebrow">✦ Nueva colección disponible</p>
   <h1>Moda para <em>ella</em><br>y para <em>él</em></h1>
   <p class="hero-sub">Encontrá las prendas que buscás. Estilo, calidad y precios accesibles.</p>
-  <a href="#tienda" class="hero-cta" onclick="event.preventDefault();scrollTo('tienda')">
+  <a href="#tienda" class="hero-cta" onclick="event.preventDefault();scrollToSection('tienda')">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     Ver la tienda
   </a>
@@ -257,7 +287,7 @@ footer a:hover{text-decoration:underline}
   <strong>De Todo Un Poco</strong><br>
   <a href="#" id="footerWaLink" target="_blank">📱 <span id="footerWaNum"></span></a> &nbsp;·&nbsp;
   <a href="#" id="footerIgLink" target="_blank">📸 <span id="footerIgHandle"></span></a> &nbsp;·&nbsp; Argentina<br>
-  <small style="opacity:.3;font-size:.66rem;margin-top:.4rem;display:block">© 2025 De Todo Un Poco</small>
+  <small style="opacity:.3;font-size:.66rem;margin-top:.4rem;display:block">© 2026 De Todo Un Poco</small>
 </footer>
 
 <!-- FLOAT WA -->
@@ -266,7 +296,51 @@ footer a:hover{text-decoration:underline}
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
-<!-- MODAL -->
+<!-- INSTALL BAR -->
+<div class="install-bar" id="installBar">
+  <button class="btn-install" id="installBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v13m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+    Instalar app
+  </button>
+  <button class="btn-install-close" id="installClose" title="Cerrar">×</button>
+</div>
+
+<script>
+// ── PWA: Service Worker + Install prompt ──────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+let deferredPrompt = null;
+const installBar   = document.getElementById('installBar');
+const installBtn   = document.getElementById('installBtn');
+const installClose = document.getElementById('installClose');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBar.classList.add('visible');
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBar.classList.remove('visible');
+});
+
+installClose.addEventListener('click', () => {
+  installBar.classList.remove('visible');
+});
+
+window.addEventListener('appinstalled', () => {
+  installBar.classList.remove('visible');
+  deferredPrompt = null;
+});
+</script>
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModalDirect()">×</button>
@@ -317,7 +391,7 @@ let currentSort   = 'hot';
 const liked       = JSON.parse(localStorage.getItem('dtup_liked') || '[]');
 
 // ── Scroll helper ─────────────────────────────────────────────────
-window.scrollTo = (id) => {
+window.scrollToSection = (id) => {
   document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
 };
 
@@ -599,9 +673,7 @@ loadProducts();
 
 <script>
 // ── Aplica configuración de firebase-config.js a todos los links ──
-// Se ejecuta al cargar la página, después de que firebase-config.js ya está disponible
 (function applyConfig() {
-  // Esperar a que storeConfig esté disponible
   if (typeof storeConfig === 'undefined') {
     return setTimeout(applyConfig, 50);
   }
@@ -611,7 +683,7 @@ loadProducts();
   const igUrl = 'https://www.instagram.com/' + ig;
   const waDisplay = '+' + wa.slice(0,2) + ' ' + wa.slice(2,3) + ' ' + wa.slice(3,7) + ' ' + wa.slice(7,9) + '-' + wa.slice(9,13);
 
-  const set = (id, href, text) => {
+  const set = (id, href) => {
     const el = document.getElementById(id);
     if (!el) return;
     el.href = href;
