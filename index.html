@@ -97,8 +97,8 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 /* Card image slider */
 .card-slider{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer;user-select:none;touch-action:pan-y}
 .card-slides{display:flex;height:100%;transition:transform .3s ease;will-change:transform}
-.card-slide{min-width:100%;height:100%;flex-shrink:0;background:var(--off-white);display:flex;align-items:center;justify-content:center}
-.card-slide img{max-width:100%;max-height:100%;object-fit:contain;display:block;pointer-events:none;width:auto;height:auto}
+.card-slide{min-width:100%;height:100%;flex-shrink:0;background:var(--off-white);position:relative}
+.card-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
 .card-prev,.card-next{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;background:rgba(28,28,30,.55);backdrop-filter:blur(4px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:2;padding:0}
 .card-slider:hover .card-prev,.card-slider:hover .card-next{opacity:1}
 .card-prev{left:8px}
@@ -142,7 +142,7 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 @media(max-width:620px){
   .modal{grid-template-columns:1fr;max-height:95vh;border-radius:16px;overflow-y:auto}
   .modal-gallery{height:auto;aspect-ratio:4/5;min-height:unset;max-height:55vh}
-  .mg-slide img{object-fit:contain}
+  .mg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
   .mg-thumbs{display:none}
   .modal-info{padding:1rem;overflow-y:visible}
 }
@@ -154,8 +154,8 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .modal-gallery{position:relative;background:var(--off-white);overflow:hidden;height:100%;min-height:0}
 .modal-gallery .mg-slides{height:100%;display:flex}
 .mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
-.mg-slide{min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--off-white)}
-.mg-slide img{width:100%;height:100%;object-fit:contain;display:block;background:var(--off-white)}
+.mg-slide{min-width:100%;height:100%;flex-shrink:0;background:var(--off-white);position:relative}
+.mg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
 .mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(28,28,30,.6);backdrop-filter:blur(6px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;padding:0}
 .mg-prev:hover,.mg-next:hover{background:var(--charcoal)}
 .mg-prev{left:10px}.mg-next{right:10px}
@@ -324,11 +324,11 @@ footer a:hover{text-decoration:underline}
 <div class="ios-modal-overlay" id="iosModalOverlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="ios-modal">
     <h3>Instalá la app 📲</h3>
-    <p>Seguí estos pasos desde Safari para agregar la app a tu pantalla de inicio:</p>
-    <div class="ios-steps">
-      <div class="ios-step"><span class="ios-step-num">1</span><span>Tocá el botón <strong>Compartir</strong> (el cuadrado con flecha ↑) en la barra de Safari</span></div>
-      <div class="ios-step"><span class="ios-step-num">2</span><span>Desplazate y tocá <strong>"Agregar a pantalla de inicio"</strong></span></div>
-      <div class="ios-step"><span class="ios-step-num">3</span><span>Tocá <strong>Agregar</strong> en la esquina superior derecha</span></div>
+    <p id="iosModalText">Seguí estos pasos para agregar la app a tu pantalla de inicio:</p>
+    <div class="ios-steps" id="iosSteps">
+      <div class="ios-step"><span class="ios-step-num">1</span><span id="iosStep1">Tocá el menú del navegador (los 3 puntos ⋮ arriba o abajo)</span></div>
+      <div class="ios-step"><span class="ios-step-num">2</span><span id="iosStep2">Buscá <strong>"Agregar a pantalla de inicio"</strong> o <strong>"Instalar app"</strong></span></div>
+      <div class="ios-step"><span class="ios-step-num">3</span><span id="iosStep3">Tocá <strong>Agregar</strong> o <strong>Instalar</strong> para confirmar ✅</span></div>
     </div>
     <button class="ios-modal-close" onclick="document.getElementById('iosModalOverlay').classList.remove('open')">Entendido</button>
   </div>
@@ -372,18 +372,16 @@ if (!isStandalone && !dismissed) {
 }
 
 installBtn.addEventListener('click', async () => {
-  if (isIOS) {
-    // Show iOS instructions modal
-    document.getElementById('iosModalOverlay').classList.add('open');
-    installBanner.classList.remove('visible');
-    return;
-  }
+  installBanner.classList.remove('visible');
   if (deferredPrompt) {
+    // Chrome Android: prompt nativo disponible
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     deferredPrompt = null;
+  } else {
+    // iOS o Chrome sin prompt: mostrar instrucciones manuales
+    document.getElementById('iosModalOverlay').classList.add('open');
   }
-  installBanner.classList.remove('visible');
 });
 
 installClose.addEventListener('click', () => {
