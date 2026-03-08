@@ -80,7 +80,7 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 
 /* ── PRODUCT GRID ── */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
-@media(max-width:500px){.products-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}}
+@media(max-width:500px){.products-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}.card-actions{padding:0 .6rem .7rem;gap:5px}.btn-wa{font-size:.72rem;padding:9px 6px}.btn-like{padding:9px 8px;font-size:.72rem}}
 
 /* ── PRODUCT CARD ── */
 .product-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;animation:fadeInUp .4s ease both}
@@ -113,11 +113,11 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .price-sale{font-size:1.15rem;font-weight:700;color:var(--ocean)}
 .price-orig{font-size:.8rem;color:var(--gray);text-decoration:line-through;font-weight:400}
 .price-pct{font-size:.68rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:2px 7px;border-radius:8px}
-.card-actions{display:flex;gap:7px;padding:0 .85rem .85rem}
-.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:9px 10px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s}
+.card-actions{display:flex;gap:6px;padding:0 .85rem .85rem;min-width:0}
+.btn-wa{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:var(--radius-sm);padding:9px 8px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;overflow:hidden}
 .btn-wa:hover{background:#1da851;transform:translateY(-1px)}
 .btn-wa svg{width:15px;height:15px;flex-shrink:0}
-.btn-like{display:flex;align-items:center;justify-content:center;gap:4px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:9px 11px;font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;min-width:56px}
+.btn-like{display:flex;align-items:center;justify-content:center;gap:4px;background:white;border:1.5px solid var(--light-gray);border-radius:var(--radius-sm);padding:9px 10px;font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--gray);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .btn-like:hover{border-color:var(--coral);color:var(--coral)}
 .btn-like.liked{background:#FFF0F2;border-color:var(--coral);color:var(--coral)}
 .btn-like svg{width:15px;height:15px;flex-shrink:0;transition:transform .2s}
@@ -135,11 +135,11 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 
 /* Modal gallery */
 .modal-gallery{position:relative;background:var(--off-white);overflow:hidden}
-.modal-gallery,.modal-gallery .mg-slides{height:100%;min-height:320px}
-@media(max-width:620px){.modal-gallery{height:55vw;min-height:200px}}
+.modal-gallery{height:100%;min-height:300px}.modal-gallery .mg-slides{height:100%;display:flex}
+@media(max-width:620px){.modal-gallery{height:auto;aspect-ratio:4/5;min-height:unset}}
 .mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
 .mg-slide{min-width:100%;height:100%;flex-shrink:0}
-.mg-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.mg-slide img{width:100%;height:100%;object-fit:contain;display:block;background:var(--off-white)}
 .mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(28,28,30,.6);backdrop-filter:blur(6px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;padding:0}
 .mg-prev:hover,.mg-next:hover{background:var(--charcoal)}
 .mg-prev{left:10px}.mg-next{right:10px}
@@ -609,7 +609,7 @@ loadProducts();
   const ig  = storeConfig.instagram;
   const waUrl = 'https://wa.me/' + wa;
   const igUrl = 'https://www.instagram.com/' + ig;
-  const waDisplay = '+' + wa.slice(0,2) + ' ' + wa.slice(2,4) + ' ' + wa.slice(4,8) + ' ' + wa.slice(8,12) + '-' + wa.slice(12);
+  const waDisplay = '+' + wa.slice(0,2) + ' ' + wa.slice(2,3) + ' ' + wa.slice(3,7) + ' ' + wa.slice(7,9) + '-' + wa.slice(9,13);
 
   const set = (id, href, text) => {
     const el = document.getElementById(id);
