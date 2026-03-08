@@ -97,8 +97,8 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 /* Card image slider */
 .card-slider{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off-white);cursor:pointer;user-select:none;touch-action:pan-y}
 .card-slides{display:flex;height:100%;transition:transform .3s ease;will-change:transform}
-.card-slide{min-width:100%;height:100%;flex-shrink:0}
-.card-slide img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;background:var(--off-white)}
+.card-slide{min-width:100%;height:100%;flex-shrink:0;background:var(--off-white);display:flex;align-items:center;justify-content:center}
+.card-slide img{max-width:100%;max-height:100%;object-fit:contain;display:block;pointer-events:none;width:auto;height:auto}
 .card-prev,.card-next{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;background:rgba(28,28,30,.55);backdrop-filter:blur(4px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:2;padding:0}
 .card-slider:hover .card-prev,.card-slider:hover .card-next{opacity:1}
 .card-prev{left:8px}
@@ -154,7 +154,7 @@ body{font-family:var(--font-body);background:var(--warm-white);color:var(--charc
 .modal-gallery{position:relative;background:var(--off-white);overflow:hidden;height:100%;min-height:0}
 .modal-gallery .mg-slides{height:100%;display:flex}
 .mg-slides{display:flex;transition:transform .35s ease;will-change:transform}
-.mg-slide{min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.mg-slide{min-width:100%;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--off-white)}
 .mg-slide img{width:100%;height:100%;object-fit:contain;display:block;background:var(--off-white)}
 .mg-prev,.mg-next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(28,28,30,.6);backdrop-filter:blur(6px);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;padding:0}
 .mg-prev:hover,.mg-next:hover{background:var(--charcoal)}
@@ -423,7 +423,7 @@ window.addEventListener('appinstalled', () => {
 
 <script type="module">
 import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, getDocs, doc, updateDoc, increment }
+import { getFirestore, collection, onSnapshot, doc, updateDoc, increment }
   from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 const FB_CONF = {
@@ -450,16 +450,15 @@ window.scrollToSection = (id) => {
   document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
 };
 
-// ── Load ──────────────────────────────────────────────────────────
-async function loadProducts() {
-  try {
-    const snap = await getDocs(collection(db, 'products'));
+// ── Load en tiempo real ───────────────────────────────────────────
+function loadProducts() {
+  onSnapshot(collection(db, 'products'), (snap) => {
     allProducts = snap.docs.map(d => ({id:d.id,...d.data()}));
     render();
-  } catch(e) {
+  }, (e) => {
     document.getElementById('productsGrid').innerHTML =
       `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Error al cargar. Intentá recargar la página.</p></div>`;
-  }
+  });
 }
 
 // ── Render grid ───────────────────────────────────────────────────
@@ -734,7 +733,7 @@ loadProducts();
   }
   const wa  = storeConfig.whatsapp;
   const ig  = storeConfig.instagram;
-  const waUrl = 'https://wa.me/' + wa;
+  const waUrl = 'https://wa.me/' + wa + '?text=Hola%21%20%F0%9F%91%8B%20Visit%C3%A9%20tu%20tienda%20%2ADe%20Todo%20Un%20Poco%2A%20y%20me%20encantaron%20los%20productos%20%F0%9F%98%8D%E2%9C%A8%20%C2%BFMe%20pod%C3%A9s%20dar%20m%C3%A1s%20informaci%C3%B3n%3F%20%F0%9F%99%8C';
   const igUrl = 'https://www.instagram.com/' + ig;
   const waDisplay = '+' + wa.slice(0,2) + ' ' + wa.slice(2,3) + ' ' + wa.slice(3,7) + ' ' + wa.slice(7,9) + '-' + wa.slice(9,13);
 
