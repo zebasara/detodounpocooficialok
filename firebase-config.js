@@ -13,7 +13,7 @@ const cloudinaryConfig = {
 };
 
 const storeConfig = {
-  whatsapp:      "5492494207140",
+  whatsapp:      "5493734485570",
   instagram:     "detodounpoco_oficialok",
   adminPassword: "123456Aabc"
   // siteUrl se detecta automáticamente con window.location.origin
