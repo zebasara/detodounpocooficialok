@@ -126,6 +126,20 @@ textarea{resize:vertical;min-height:78px}
   .prod-actions{flex-direction:column}
   .btn-edit,.btn-del{font-size:.7rem;padding:5px 9px}
 }
+/* ── SEARCH ── */
+.list-search{width:100%;padding:9px 13px;border:1.5px solid var(--light-gray);border-radius:8px;font-family:var(--font-body);font-size:.85rem;outline:none;transition:border-color .2s;margin-bottom:.9rem;background:white;color:var(--charcoal)}
+.list-search:focus{border-color:var(--ocean)}
+/* ── SCROLLABLE LIST ── */
+.list-scroll{max-height:620px;overflow-y:auto;overflow-x:hidden;padding-right:3px}
+.list-scroll::-webkit-scrollbar{width:5px}
+.list-scroll::-webkit-scrollbar-track{background:var(--off-white);border-radius:4px}
+.list-scroll::-webkit-scrollbar-thumb{background:var(--light-gray);border-radius:4px}
+.list-scroll::-webkit-scrollbar-thumb:hover{background:var(--gray)}
+/* ── STATUS BADGES (admin list) ── */
+.badge-status{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.03em}
+.badge-status.agotado{background:#FFE4E4;color:#C62828}
+.badge-status.por-pedido{background:#FFF3E0;color:#E65100}
+.badge-status.disponible{background:#E8F5E9;color:#2E7D32}
 </style>
 </head>
 <body>
@@ -205,6 +219,14 @@ textarea{resize:vertical;min-height:78px}
           <option value="unisex">✨ Unisex</option>
         </select>
       </div>
+      <div class="fg">
+        <label>Estado del producto</label>
+        <select id="statusIn">
+          <option value="disponible">✅ Disponible</option>
+          <option value="por_pedido">📦 Por Pedido</option>
+          <option value="agotado">❌ Agotado</option>
+        </select>
+      </div>
 
       <div class="btn-row" id="btnRow">
         <button class="btn-submit full" id="submitBtn" onclick="saveProduct()">
@@ -220,8 +242,11 @@ textarea{resize:vertical;min-height:78px}
         <h2>Productos Publicados</h2>
         <span class="prod-count" id="prodCount"></span>
       </div>
-      <div id="prodList">
-        <div class="spin-wrap"><div class="spinner"></div></div>
+      <input type="text" class="list-search" id="listSearch" placeholder="🔍 Buscar producto por nombre...">
+      <div class="list-scroll">
+        <div id="prodList">
+          <div class="spin-wrap"><div class="spinner"></div></div>
+        </div>
       </div>
     </div>
 
@@ -349,6 +374,7 @@ window.startEdit = (id) => {
   document.getElementById('priceIn').value     = p.price || '';
   document.getElementById('origPriceIn').value = p.originalPrice || '';
   document.getElementById('catIn').value       = p.category || 'mujer';
+  document.getElementById('statusIn').value    = p.status   || 'disponible';
 
   // Load existing images
   const imgs = p.images?.length ? p.images : (p.imageUrl ? [p.imageUrl] : []);
@@ -386,6 +412,7 @@ function resetForm() {
   document.getElementById('priceIn').value     = '';
   document.getElementById('origPriceIn').value = '';
   document.getElementById('catIn').value       = 'mujer';
+  document.getElementById('statusIn').value    = 'disponible';
   document.getElementById('formTitle').textContent = 'Agregar Producto';
   document.getElementById('editBadge').classList.remove('show');
   document.getElementById('progWrap').style.display  = 'none';
@@ -405,6 +432,7 @@ window.saveProduct = async () => {
   const price     = Number(document.getElementById('priceIn').value);
   const origPrice = Number(document.getElementById('origPriceIn').value) || null;
   const category  = document.getElementById('catIn').value;
+  const status    = document.getElementById('statusIn').value;
 
   if (!title || !desc || !price || pendingImgs.length === 0) {
     toast('Completá título, descripción, precio e imagen', 'err'); return;
@@ -438,6 +466,7 @@ window.saveProduct = async () => {
       title, description: desc, price,
       originalPrice: origPrice,
       category,
+      status,
       imageUrl:  finalImages[0],
       images:    finalImages,
     };
@@ -488,14 +517,17 @@ function renderList() {
   }
 
   const cats = {mujer:'👗 Mujer', hombre:'👔 Hombre', unisex:'✨ Unisex'};
+  const stLabels = {disponible:'✅ Disponible', por_pedido:'📦 Por Pedido', agotado:'❌ Agotado'};
   const sorted = [...products].sort((a,b) => (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
 
   el.innerHTML = '<div class="prod-list">' + sorted.map(p => {
-    const imgs     = p.images?.length ? p.images : (p.imageUrl ? [p.imageUrl] : []);
-    const hasDisc  = p.originalPrice && p.originalPrice > p.price;
-    const discPct  = hasDisc ? Math.round((1-p.price/p.originalPrice)*100) : 0;
-    const priceF   = Number(p.price).toLocaleString('es-AR');
+    const imgs      = p.images?.length ? p.images : (p.imageUrl ? [p.imageUrl] : []);
+    const hasDisc   = p.originalPrice && p.originalPrice > p.price;
+    const discPct   = hasDisc ? Math.round((1-p.price/p.originalPrice)*100) : 0;
+    const priceF    = Number(p.price).toLocaleString('es-AR');
     const isEditing = editingId === p.id;
+    const st        = p.status || 'disponible';
+    const stClass   = st.replace('_','-');
     const thumbsHtml = imgs.slice(0,3).map(u =>
       `<img src="${u}" alt="" loading="lazy" onerror="this.style.opacity=0">`
     ).join('');
@@ -508,6 +540,7 @@ function renderList() {
           <span class="prod-price">$${priceF}</span>
           ${hasDisc ? `<span class="prod-orig-price">$${Number(p.originalPrice).toLocaleString('es-AR')}</span><span class="prod-disc">-${discPct}%</span>` : ''}
           <span class="prod-cat">${cats[p.category]||p.category}</span>
+          <span class="badge-status ${stClass}">${stLabels[st]||st}</span>
           <span class="prod-likes">❤️ ${p.likes||0}</span>
           <span class="prod-imgs-count">📷 ${imgs.length}</span>
         </div>
@@ -550,6 +583,15 @@ drop.addEventListener('drop', e => {
   e.preventDefault();
   drop.classList.remove('drag');
   window.addImages(e.dataTransfer.files);
+});
+
+// ── SEARCH ────────────────────────────────────────────────────────
+document.getElementById('listSearch').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  document.querySelectorAll('#prodList .prod-item').forEach(el => {
+    const title = el.querySelector('.prod-title')?.textContent.toLowerCase() || '';
+    el.style.display = title.includes(q) ? '' : 'none';
+  });
 });
 </script>
 </body>
