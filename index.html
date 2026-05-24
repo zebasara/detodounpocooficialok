@@ -243,6 +243,47 @@ footer a:hover{text-decoration:underline}
 .modal-agotado{background:#FFE4E4;color:#C62828}
 .modal-por-pedido-badge{background:#FFF3E0;color:#E65100}
 .modal-wa.modal-wa-agotado{background:#9E9E9E!important;box-shadow:none!important;cursor:not-allowed;pointer-events:none}
+/* ── SHOP SEARCH ── */
+.shop-search-wrap{position:relative;margin-bottom:1.2rem}
+.shop-search{width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--light-gray);border-radius:var(--radius);font-family:var(--font-body);font-size:.88rem;outline:none;transition:border-color .2s,box-shadow .2s;background:white;color:var(--charcoal)}
+.shop-search:focus{border-color:var(--ocean);box-shadow:0 0 0 3px rgba(53,92,125,.08)}
+.shop-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none}
+.shop-search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);cursor:pointer;font-size:1.2rem;padding:2px 6px;line-height:1;display:none}
+.shop-search-clear.visible{display:block}
+/* ── DARK MODE ── */
+[data-theme="dark"]{--warm-white:#0F0F12;--off-white:#1A1A22;--charcoal:#EDEAE5;--gray:#8888A0;--light-gray:#2E2E3E}
+[data-theme="dark"] body{background:#0F0F12;color:#EDEAE5}
+[data-theme="dark"] .navbar{background:rgba(15,15,18,.96);border-bottom-color:#2E2E3E}
+[data-theme="dark"] .hero{background:linear-gradient(135deg,#0F0F12 0%,#141418 55%,#1A1A22 100%)}
+[data-theme="dark"] .hero::before{background:radial-gradient(circle,rgba(246,114,128,.07) 0%,transparent 70%)}
+[data-theme="dark"] .product-card{background:#1A1A22}
+[data-theme="dark"] .card-slider,[data-theme="dark"] .card-slide{background:#222230}
+[data-theme="dark"] .btn-like{background:#1A1A22;border-color:#2E2E3E}
+[data-theme="dark"] .btn-like.liked{background:#2A1520}
+[data-theme="dark"] .filter-tab{background:#1A1A22;border-color:#2E2E3E}
+[data-theme="dark"] .filter-tab.active{background:#EDEAE5;border-color:#EDEAE5;color:#0F0F12}
+[data-theme="dark"] .sort-btn{background:#1A1A22;border-color:#2E2E3E}
+[data-theme="dark"] .sort-btn.active{background:var(--ocean);border-color:var(--ocean);color:white}
+[data-theme="dark"] .modal{background:#1A1A22}
+[data-theme="dark"] .modal-gallery,[data-theme="dark"] .mg-slide,[data-theme="dark"] .mg-thumbs{background:#222230}
+[data-theme="dark"] .modal-info{background:#1A1A22}
+[data-theme="dark"] .modal-like-btn{background:#1A1A22;border-color:#2E2E3E}
+[data-theme="dark"] .modal-like-btn.liked{background:#2A1520}
+[data-theme="dark"] .shop-search{background:#1A1A22;border-color:#2E2E3E;color:#EDEAE5}
+[data-theme="dark"] .shop-search::placeholder{color:#505060}
+[data-theme="dark"] .install-banner{background:#1A1A22;border-top-color:#2E2E3E}
+[data-theme="dark"] .ios-modal{background:#1A1A22}
+[data-theme="dark"] footer{background:#080809}
+/* ── THEME TOGGLE BUTTON ── */
+.nav-right{display:flex;align-items:center;gap:.8rem}
+.theme-toggle{background:none;border:1.5px solid var(--light-gray);border-radius:20px;padding:5px 9px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray);transition:all .2s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--coral);color:var(--coral)}
+.theme-toggle svg{width:15px;height:15px;flex-shrink:0}
+.icon-sun{display:none}
+[data-theme="dark"] .icon-moon{display:none}
+[data-theme="dark"] .icon-sun{display:block}
+[data-theme="dark"] .theme-toggle{border-color:#2E2E3E;color:#8888A0}
+[data-theme="dark"] .theme-toggle:hover{border-color:var(--coral);color:var(--coral)}
 </style>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#F67280">
@@ -252,6 +293,14 @@ footer a:hover{text-decoration:underline}
 <meta name="apple-mobile-web-app-title" content="De Todo Un Poco">
 <link rel="apple-touch-icon" href="logo.png">
 <script src="firebase-config.js"></script>
+<script>
+// Anti-flash: aplica el tema antes de que el navegador pinte
+(function(){
+  const saved = localStorage.getItem('dtup_theme');
+  const sys   = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', saved || sys);
+})();
+</script>
 </head>
 <body>
 
@@ -261,13 +310,19 @@ footer a:hover{text-decoration:underline}
     <img src="logo.png" alt="De Todo Un Poco" class="nav-logo">
     <div class="nav-title">De Todo Un Poco<span>Moda para todos</span></div>
   </a>
-  <div class="nav-links">
-    <a href="#tienda" onclick="scrollToSection('tienda')">Tienda</a>
-    <a href="#" id="navWaLink" target="_blank">WhatsApp</a>
-    <a href="#" id="navIgLink" target="_blank" class="nav-ig">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      <span id="navIgHandle">@detodounpoco_oficialok</span>
-    </a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="#tienda" onclick="scrollToSection('tienda')">Tienda</a>
+      <a href="#" id="navWaLink" target="_blank">WhatsApp</a>
+      <a href="#" id="navIgLink" target="_blank" class="nav-ig">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span id="navIgHandle">@detodounpoco_oficialok</span>
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -292,6 +347,11 @@ footer a:hover{text-decoration:underline}
       <button class="filter-tab" data-filter="hombre">👔 Hombre</button>
       <button class="filter-tab" data-filter="unisex">✨ Unisex</button>
     </div>
+  </div>
+  <div class="shop-search-wrap">
+    <svg class="shop-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="shop-search" id="shopSearch" placeholder="Buscar productos...">
+    <button class="shop-search-clear" id="shopSearchClear">×</button>
   </div>
   <div class="sort-bar">
     <span class="sort-label">Ordenar:</span>
@@ -449,6 +509,7 @@ const db  = getFirestore(app);
 let allProducts   = [];
 let currentFilter = 'all';
 let currentSort   = 'hot';
+let currentSearch = '';
 const liked       = JSON.parse(localStorage.getItem('dtup_liked') || '[]');
 
 // ── Scroll helper ─────────────────────────────────────────────────
@@ -471,6 +532,10 @@ function loadProducts() {
 function render() {
   let list = [...allProducts];
   if (currentFilter !== 'all') list = list.filter(p => p.category === currentFilter);
+  if (currentSearch) list = list.filter(p =>
+    p.title?.toLowerCase().includes(currentSearch) ||
+    p.description?.toLowerCase().includes(currentSearch)
+  );
   if (currentSort === 'hot') list.sort((a,b) => (b.likes||0)-(a.likes||0));
   else list.sort((a,b) => (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
 
@@ -740,6 +805,27 @@ document.querySelectorAll('.sort-btn').forEach(btn => btn.addEventListener('clic
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
 }, {passive:true});
+
+// ── Theme toggle ──────────────────────────────────────────────────
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const cur  = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('dtup_theme', next);
+});
+
+// ── Search ────────────────────────────────────────────────────────
+document.getElementById('shopSearch').addEventListener('input', function() {
+  currentSearch = this.value.trim().toLowerCase();
+  document.getElementById('shopSearchClear').classList.toggle('visible', currentSearch.length > 0);
+  render();
+});
+document.getElementById('shopSearchClear').addEventListener('click', () => {
+  currentSearch = '';
+  document.getElementById('shopSearch').value = '';
+  document.getElementById('shopSearchClear').classList.remove('visible');
+  render();
+});
 
 loadProducts();
 </script>
