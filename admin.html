@@ -140,7 +140,60 @@ textarea{resize:vertical;min-height:78px}
 .badge-status.agotado{background:#FFE4E4;color:#C62828}
 .badge-status.por-pedido{background:#FFF3E0;color:#E65100}
 .badge-status.disponible{background:#E8F5E9;color:#2E7D32}
+/* ── DARK MODE ── */
+[data-theme="dark"]{--warm-white:#111115;--off-white:#1A1A22;--gray:#8888A0;--light-gray:#2E2E3E;--charcoal:#EDEAE5}
+[data-theme="dark"] body{background:#0F0F12;color:#EDEAE5}
+/* Header: siempre oscuro, no cambia con --charcoal */
+[data-theme="dark"] header{background:#111115}
+/* Auth gate */
+[data-theme="dark"] #authGate{background:#0A0A0D}
+[data-theme="dark"] .auth-box{background:#1A1A22;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+[data-theme="dark"] .auth-input{background:#0F0F12;border-color:#2E2E3E;color:#EDEAE5}
+[data-theme="dark"] .btn-primary{background:#F0EDE8;color:#0F0F12}
+[data-theme="dark"] .btn-primary:hover{opacity:.9}
+/* Cards y formulario */
+[data-theme="dark"] .card{background:#1A1A22}
+[data-theme="dark"] .card-header{border-bottom-color:#2E2E3E}
+[data-theme="dark"] input[type=text],[data-theme="dark"] input[type=number],[data-theme="dark"] textarea,[data-theme="dark"] select{background:#111115;border-color:#2E2E3E;color:#EDEAE5}
+[data-theme="dark"] .upload-drop{background:#0F0F12;border-color:#2E2E3E}
+[data-theme="dark"] .upload-drop:hover,[data-theme="dark"] .upload-drop.drag{background:#1A0D0F;border-color:var(--coral)}
+[data-theme="dark"] .upload-drop p{color:#8888A0}
+[data-theme="dark"] .prog-bar{background:#2E2E3E}
+/* Botones */
+[data-theme="dark"] .btn-cancel{background:#1A1A22;color:#8888A0;border-color:#2E2E3E}
+[data-theme="dark"] .btn-cancel:hover{border-color:#EDEAE5;color:#EDEAE5;background:#222230}
+[data-theme="dark"] .btn-edit{border-color:var(--ocean);color:var(--ocean)}
+[data-theme="dark"] .btn-edit:hover{background:var(--ocean);color:white}
+[data-theme="dark"] .btn-del{border-color:var(--danger);color:var(--danger)}
+[data-theme="dark"] .btn-del:hover{background:var(--danger);color:white}
+/* Lista de productos */
+[data-theme="dark"] .prod-item{background:#111115;border-color:#2E2E3E}
+[data-theme="dark"] .prod-item:hover{background:#1A1A22;box-shadow:none}
+[data-theme="dark"] .prod-item.editing{background:#1A0D14;border-color:var(--coral)}
+[data-theme="dark"] .prod-cat{background:#222230}
+/* Toast: background:charcoal se vuelve claro → fijarlo */
+[data-theme="dark"] .toast{background:#111115;color:#EDEAE5}
+/* Buscador */
+[data-theme="dark"] .list-search{background:#111115;border-color:#2E2E3E;color:#EDEAE5}
+[data-theme="dark"] .list-search::placeholder{color:#505060}
+[data-theme="dark"] .list-scroll::-webkit-scrollbar-track{background:#111115}
+[data-theme="dark"] .list-scroll::-webkit-scrollbar-thumb{background:#2E2E3E}
+/* ── THEME TOGGLE BUTTON (header oscuro) ── */
+.header-right{display:flex;align-items:center;gap:1rem}
+.theme-toggle-admin{background:none;border:1.5px solid rgba(255,255,255,.22);border-radius:20px;padding:5px 9px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);transition:all .2s;flex-shrink:0}
+.theme-toggle-admin:hover{border-color:rgba(255,255,255,.7);color:white}
+.theme-toggle-admin svg{width:15px;height:15px;flex-shrink:0}
+.theme-toggle-admin .icon-sun{display:none}
+[data-theme="dark"] .theme-toggle-admin .icon-moon{display:none}
+[data-theme="dark"] .theme-toggle-admin .icon-sun{display:block}
 </style>
+<script>
+(function(){
+  const saved = localStorage.getItem('dtup_theme');
+  const sys   = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', saved || sys);
+})();
+</script>
 </head>
 <body>
 
@@ -164,7 +217,13 @@ textarea{resize:vertical;min-height:78px}
       <img src="logo.png" alt="Logo">
       <div><h1>De Todo Un Poco</h1><small>Panel Admin</small></div>
     </div>
-    <a href="/">← Ver tienda</a>
+    <div class="header-right">
+      <button class="theme-toggle-admin" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="/">← Ver tienda</a>
+    </div>
   </header>
 
   <div class="body">
@@ -592,6 +651,14 @@ document.getElementById('listSearch').addEventListener('input', function() {
     const title = el.querySelector('.prod-title')?.textContent.toLowerCase() || '';
     el.style.display = title.includes(q) ? '' : 'none';
   });
+});
+
+// ── THEME TOGGLE ──────────────────────────────────────────────────
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const cur  = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('dtup_theme', next);
 });
 </script>
 </body>
