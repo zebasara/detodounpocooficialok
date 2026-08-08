@@ -238,10 +238,12 @@ footer a:hover{text-decoration:underline}
 /* ── STATUS BADGES (tienda) ── */
 .badge-agotado{position:absolute;top:10px;left:10px;background:#C62828;color:white;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:9px;z-index:2;letter-spacing:.04em}
 .badge-por-pedido{position:absolute;top:10px;left:10px;background:#E65100;color:white;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:9px;z-index:2;letter-spacing:.04em}
+.badge-disponible{position:absolute;top:10px;left:10px;background:#2E7D32;color:white;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:9px;z-index:2;letter-spacing:.04em}
 .btn-wa.btn-agotado{background:#9E9E9E!important;cursor:not-allowed;pointer-events:none;opacity:.8}
 .modal-status-badge{font-size:.74rem;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block;margin-bottom:.8rem}
 .modal-agotado{background:#FFE4E4;color:#C62828}
 .modal-por-pedido-badge{background:#FFF3E0;color:#E65100}
+.modal-disponible-badge{background:#E4F5E5;color:#2E7D32}
 .modal-wa.modal-wa-agotado{background:#9E9E9E!important;box-shadow:none!important;cursor:not-allowed;pointer-events:none}
 /* ── SHOP SEARCH ── */
 .shop-search-wrap{position:relative;margin-bottom:1.2rem}
@@ -583,7 +585,8 @@ function render() {
       : (isHot && hasDisc)
       ? `<div class="badge-hot-sale"><span class="badge-hot">🔥 Hot</span><span class="badge-sale">-${discPct}%</span></div>`
       : isHot ? `<div class="badge-hot">🔥 Hot</div>`
-      : hasDisc ? `<div class="badge-sale">-${discPct}%</div>` : '';
+      : hasDisc ? `<div class="badge-sale">-${discPct}%</div>`
+      : `<div class="badge-disponible">✅ Disponible</div>`;
 
     return `
     <div class="product-card" style="animation-delay:${i*.05}s" data-id="${p.id}">
@@ -701,7 +704,7 @@ window.openModal = (id) => {
   // Info
   document.getElementById('modalInfo').innerHTML = `
     <div class="modal-cat">${catLabel}</div>
-    ${isAgotado ? `<span class="modal-status-badge modal-agotado">❌ Agotado</span>` : isPorPedido ? `<span class="modal-status-badge modal-por-pedido-badge">📦 Por Pedido</span>` : ''}
+    ${isAgotado ? `<span class="modal-status-badge modal-agotado">❌ Agotado</span>` : isPorPedido ? `<span class="modal-status-badge modal-por-pedido-badge">📦 Por Pedido</span>` : `<span class="modal-status-badge modal-disponible-badge">✅ Disponible</span>`}
     <h2 class="modal-title">${p.title}</h2>
     <div class="modal-price-block">
       <span class="modal-price">$${priceF}</span>
