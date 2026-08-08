@@ -39,11 +39,11 @@ header h1{font-family:var(--font-display);font-size:1.1rem}
 header small{font-size:.6rem;opacity:.4;display:block;letter-spacing:.1em;text-transform:uppercase}
 header a{color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;transition:color .2s}
 header a:hover{color:white}
-.body{max-width:1200px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:420px 1fr;gap:1.5rem;align-items:start}
+.body{max-width:1200px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:420px minmax(0,1fr);gap:1.5rem;align-items:start}
 @media(max-width:860px){.body{grid-template-columns:1fr}}
 
 /* ── CARD ── */
-.card{background:white;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.card{background:white;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm);min-width:0}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--light-gray)}
 .card-header h2{font-family:var(--font-display);font-size:1.1rem}
 .edit-badge{font-size:.72rem;font-weight:700;background:linear-gradient(135deg,var(--coral),var(--mauve));color:white;padding:3px 11px;border-radius:10px;display:none}
@@ -96,7 +96,7 @@ textarea{resize:vertical;min-height:78px}
 .list-header h2{font-family:var(--font-display);font-size:1.1rem}
 .prod-count{font-size:.78rem;color:var(--gray)}
 .prod-list{display:flex;flex-direction:column;gap:.75rem}
-.prod-item{display:flex;gap:.9rem;align-items:center;padding:.9rem;background:var(--warm-white);border-radius:8px;border:1px solid var(--light-gray);transition:box-shadow .2s,border-color .2s}
+.prod-item{display:flex;gap:.9rem;align-items:center;padding:.9rem;background:var(--warm-white);border-radius:8px;border:1px solid var(--light-gray);transition:box-shadow .2s,border-color .2s;min-width:0}
 .prod-item:hover{box-shadow:var(--shadow-sm)}
 .prod-item.editing{border-color:var(--coral);background:#FFF8F8}
 .prod-thumbs{display:flex;gap:3px;flex-shrink:0}
@@ -130,7 +130,7 @@ textarea{resize:vertical;min-height:78px}
 .list-search{width:100%;padding:9px 13px;border:1.5px solid var(--light-gray);border-radius:8px;font-family:var(--font-body);font-size:.85rem;outline:none;transition:border-color .2s;margin-bottom:.9rem;background:white;color:var(--charcoal)}
 .list-search:focus{border-color:var(--ocean)}
 /* ── SCROLLABLE LIST ── */
-.list-scroll{max-height:620px;overflow-y:auto;overflow-x:hidden;padding-right:3px}
+.list-scroll{max-height:620px;overflow-y:auto;padding-right:3px}
 .list-scroll::-webkit-scrollbar{width:5px}
 .list-scroll::-webkit-scrollbar-track{background:var(--off-white);border-radius:4px}
 .list-scroll::-webkit-scrollbar-thumb{background:var(--light-gray);border-radius:4px}
